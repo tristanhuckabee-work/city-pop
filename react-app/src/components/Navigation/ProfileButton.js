@@ -10,10 +10,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+  const openMenu = () => { if (!showMenu) setShowMenu(true) };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -39,34 +36,23 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div onClick={openMenu}>
+        <i className="fas fa-user-circle fa-2x" />
+      </div>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
+          <div id='nav-user'>
+            <p>@{user.username}</p>
+          </div>
               <button onClick={handleLogout}>Log Out</button>
-            </li>
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+            
           </>
         )}
-      </ul>
+      </div>
     </>
   );
 }

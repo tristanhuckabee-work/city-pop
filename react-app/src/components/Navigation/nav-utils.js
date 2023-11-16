@@ -1,0 +1,2 @@
+export const baseLogo = 'https://res.cloudinary.com/dzsgront4/image/upload/v1700098243/Untitled_2_vqayo9.png'
+export const hoverLogo = 'https://res.cloudinary.com/dzsgront4/image/upload/v1700098155/Untitled_3_hjqqf8.png'
