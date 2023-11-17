@@ -26,8 +26,8 @@ def upgrade():
   sa.Column('description', sa.String(length=255)),
   sa.Column('image_url', sa.String(length=255)),
   sa.Column('user_id', sa.Integer(), nullable=False),
-  sa.Column('createdAt', sa.DateTime(), nullable=False),
-  sa.Column('updatedAt', sa.DateTime(), nullable=False),
+  sa.Column('created_at', sa.DateTime(), nullable=False),
+  sa.Column('updated_at', sa.DateTime(), nullable=False),
   sa.ForeignKeyConstraint(['user_id'], ['users.id']),
   sa.PrimaryKeyConstraint('id')
   )

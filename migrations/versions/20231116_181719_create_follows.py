@@ -23,8 +23,8 @@ def upgrade():
   sa.Column('id', sa.Integer(), nullable=False),
   sa.Column('follower_id', sa.Integer(), nullable=False),
   sa.Column('followed_id', sa.Integer(), nullable=False),
-  sa.Column('createdAt', sa.DateTime(), nullable=False),
-  sa.Column('updatedAt', sa.DateTime(), nullable=False),
+  sa.Column('created_at', sa.DateTime(), nullable=False),
+  sa.Column('updated_at', sa.DateTime(), nullable=False),
   sa.PrimaryKeyConstraint('id')
   )
 
