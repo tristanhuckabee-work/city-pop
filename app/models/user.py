@@ -24,19 +24,19 @@ class User(db.Model, UserMixin):
   # following = db.relationship('Follow', back_populates='follower', cascade='all, delete-orphan')
   # followers = db.relationship('Follow', back_populates='followed', cascade='all, delete-orphan')
   
-  following = db.relationship(
-    'User',
-    secondary='follows',
-    primaryjoin=('follows.follower_id' == 'id'),
-    secondaryjoin=('follows.followed_id' == 'id'),
-  )
-  followers = db.relationship(
-    'User', 
-    secondary='follows',
-    primaryjoin=('follows.followed_id' == 'id'),
-    secondaryjoin=('follows.follower_id' == 'id'),
-    back_populates='following'
-  )
+  # following = db.relationship(
+  #   'User',
+  #   secondary='follows',
+  #   primaryjoin=('follows.follower_id' == 'id'),
+  #   secondaryjoin=('follows.followed_id' == 'id'),
+  # )
+  # followers = db.relationship(
+  #   'User', 
+  #   secondary='follows',
+  #   primaryjoin=('follows.followed_id' == 'id'),
+  #   secondaryjoin=('follows.follower_id' == 'id'),
+  #   back_populates='following'
+  # )
 
   @property
   def password(self):

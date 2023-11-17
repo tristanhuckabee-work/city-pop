@@ -1,10 +1,14 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .songs import seed_songs, undo_songs
+from .playlists import seed_playlists, undo_playlists
+from .comments import seed_comments, undo_comments
+from .likes import seed_likes, undo_likes
+from .follows import seed_follows, undo_follows
 
 from app.models.db import db, environment, SCHEMA
 
-# Creates a seed group to hold our commands
-# So we can type `flask seed --help`
+# `flask seed --help`
 seed_commands = AppGroup('seed')
 
 
@@ -14,8 +18,18 @@ def seed():
     # Before seeding in production, clear all seeds
     if environment == 'production':
         undo_users()
+        undo_songs()
+        undo_playlists()
+        undo_comments()
+        undo_likes()
+        undo_follows()
     # Seed Functions
     seed_users()
+    seed_songs()
+    seed_playlists()
+    seed_comments()
+    seed_likes()
+    seed_follows()
 
 
 # `flask seed undo`
@@ -23,3 +37,8 @@ def seed():
 def undo():
     # Seed Undo Functions
     undo_users()
+    undo_songs()
+    undo_playlists()
+    undo_comments()
+    undo_likes()
+    undo_follows()
