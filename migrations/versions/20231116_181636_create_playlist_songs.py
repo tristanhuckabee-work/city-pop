@@ -23,8 +23,8 @@ def upgrade():
   sa.Column('id', sa.Integer(), nullable=False),
   sa.Column('playlist_id', sa.Integer(), nullable=False),
   sa.Column('song_id', sa.Integer(), nullable=False),
-  sa.Column('createdAt', sa.DateTime(), server_default=sa.func.current_timestamp(), nullable=False),
-  sa.Column('updatedAt', sa.DateTime(), server_default=sa.func.current_timestamp(), nullable=False),
+  sa.Column('createdAt', sa.DateTime(), nullable=False),
+  sa.Column('updatedAt', sa.DateTime(), nullable=False),
   sa.ForeignKeyConstraint(['playlist_id'], ['playlists.id']),
   sa.ForeignKeyConstraint(['song_id'], ['songs.id']),
   sa.PrimaryKeyConstraint('id')

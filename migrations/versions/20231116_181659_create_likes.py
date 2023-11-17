@@ -24,8 +24,8 @@ def upgrade():
   sa.Column('isLiked', sa.Boolean(True), nullable=False),
   sa.Column('song_id', sa.Integer(), nullable=False),
   sa.Column('user_id', sa.Integer(), nullable=False),
-  sa.Column('createdAt', sa.DateTime(), server_default=sa.func.current_timestamp(), nullable=False),
-  sa.Column('updatedAt', sa.DateTime(), server_default=sa.func.current_timestamp(), nullable=False),
+  sa.Column('createdAt', sa.DateTime(), nullable=False),
+  sa.Column('updatedAt', sa.DateTime(), nullable=False),
   sa.ForeignKeyConstraint(['user_id'], ['users.id']),
   sa.ForeignKeyConstraint(['song_id'], ['songs.id']),
   sa.PrimaryKeyConstraint('id')
