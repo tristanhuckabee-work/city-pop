@@ -14,8 +14,8 @@ class Follow(db.Model):
   created_at = db.Column(db.DateTime, default=datetime.now())
   updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
   
-  # follower = db.relationship('User', back_populates="following")
-  # followed = db.relationship('User', back_populates="followers")
+  follower = db.relationship('User', foreign_keys=[follower_id], back_populates='following')
+  followed = db.relationship('User', foreign_keys=[followed_id], back_populates='followers')
 
   def to_dict(self):
     return {

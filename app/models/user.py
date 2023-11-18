@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .follow import Follow
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -21,21 +22,22 @@ class User(db.Model, UserMixin):
   likes = db.relationship('Like', back_populates='user', cascade='all, delete-orphan')
   comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
   
-  # following = db.relationship('Follow', back_populates='follower', cascade='all, delete-orphan')
-  # followers = db.relationship('Follow', back_populates='followed', cascade='all, delete-orphan')
+  following = db.relationship('Follow', foreign_keys=[Follow.follower_id], back_populates='follower', cascade='all, delete-orphan')
+  followers = db.relationship('Follow', foreign_keys=[Follow.followed_id], back_populates='followed', cascade='all, delete-orphan')
   
   # following = db.relationship(
   #   'User',
   #   secondary='follows',
-  #   primaryjoin=('follows.follower_id' == 'id'),
-  #   secondaryjoin=('follows.followed_id' == 'id'),
+  #   primaryjoin=(follows.c.follower_id == id),
+  #   secondaryjoin=(follows.c.followed_id == id),
+  #   backref='followers'
   # )
   # followers = db.relationship(
   #   'User', 
   #   secondary='follows',
-  #   primaryjoin=('follows.followed_id' == 'id'),
-  #   secondaryjoin=('follows.follower_id' == 'id'),
-  #   back_populates='following'
+  #   primaryjoin=(follows.c.followed_id == id),
+  #   secondaryjoin=(follows.c.follower_id == id),
+  #   backref='following'
   # )
 
   @property
