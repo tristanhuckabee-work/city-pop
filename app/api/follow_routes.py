@@ -5,13 +5,35 @@ from app.models import Follow, db
 follow_routes = Blueprint('follows', __name__)
 
 
-# COMMENTS ----------------------------------
-#! NOT DONE
-# GET /follows : Get all Follows
+#! FOR TESTING
 @follow_routes.route('/', methods=['GET'])
 def get_all_follows():
   """
-  GET /api/follows : Get All Follows
+  Get All Follows
   """
   follows = Follow.query.all()
   return {'follows': [follow.to_dict() for follow in follows]}
+
+
+@follow_routes.route('/following', methods=['GET'])
+def get_all_following():
+  """
+  Get All Follows where CurrentUser is Follower
+  """
+  findMe = Follow.follower_id == current_user.id
+  isFollowed = Follow.isFollowed == True
+  
+  follows = Follow.query.filter(findMe, isFollowed).all()
+  return {'follows': [[follow.to_dict() for follow in follows]]}
+
+
+@follow_routes.route('/followers', methods=['GET'])
+def get_all_followers():
+  """
+  Get All Follows where CurrentUser is Followed
+  """
+  findMe = Follow.followed_id == current_user.id
+  isFollowed = Follow.isFollowed == True
+  
+  follows = Follow.query.filter(findMe, isFollowed).all()
+  return {'follows': [[follow.to_dict() for follow in follows]]}

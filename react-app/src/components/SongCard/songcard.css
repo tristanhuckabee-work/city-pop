@@ -1,0 +1,62 @@
+.song-card {
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  padding: 10px;
+  width: 100%;
+}
+.song-card img {
+  background-color: #888888;
+  border-radius: 3px;
+  height: 11vh;
+  width: 11vh;
+}
+.song-card-info {
+  align-items: flex-start;
+  border-left: 2px solid #eeeeee;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 11vh;
+  padding-left: 10px;
+  width: 100%;
+}
+.song-card-info span {
+  align-items: center;
+  display:flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+.song-card-info span p:first-child {
+  background-color: #fc466b;
+  border-radius: 10px;
+  color: white;
+  padding: 3px 10px;
+}
+.song-actions {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 11vh;
+}
+.song-actions i {
+  color: #888888;
+  font-size: 1.75em;
+}
+.user-options {
+  align-items: center;
+  border: 2px solid #888888;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+i.fa-heart {
+  color: #fc466b;
+  padding: 0 10px;
+}

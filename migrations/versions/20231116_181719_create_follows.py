@@ -21,6 +21,7 @@ depends_on = None
 def upgrade():
   op.create_table('follows',
   sa.Column('id', sa.Integer(), nullable=False),
+  sa.Column('isFollowed', sa.Boolean(True), nullable=False),
   sa.Column('follower_id', sa.Integer(), nullable=False),
   sa.Column('followed_id', sa.Integer(), nullable=False),
   sa.Column('created_at', sa.DateTime(), nullable=False),
