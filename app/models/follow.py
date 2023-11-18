@@ -20,10 +20,6 @@ class Follow(db.Model):
   def to_dict(self):
     return {
       'id': self.id,
-      'name': self.name,
-      'genre': self.genre,
-      'image_url': self.image_url,
-      'track_url': self.track_url,
-      'updated_at': self.updated_at,
-      'user': self.user.to_dict_children()
+      'follower': self.follower.to_dict_children(),
+      'followed': self.followed.to_dict_children()
     }

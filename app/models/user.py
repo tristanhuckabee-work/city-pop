@@ -24,21 +24,6 @@ class User(db.Model, UserMixin):
   
   following = db.relationship('Follow', foreign_keys=[Follow.follower_id], back_populates='follower', cascade='all, delete-orphan')
   followers = db.relationship('Follow', foreign_keys=[Follow.followed_id], back_populates='followed', cascade='all, delete-orphan')
-  
-  # following = db.relationship(
-  #   'User',
-  #   secondary='follows',
-  #   primaryjoin=(follows.c.follower_id == id),
-  #   secondaryjoin=(follows.c.followed_id == id),
-  #   backref='followers'
-  # )
-  # followers = db.relationship(
-  #   'User', 
-  #   secondary='follows',
-  #   primaryjoin=(follows.c.followed_id == id),
-  #   secondaryjoin=(follows.c.follower_id == id),
-  #   backref='following'
-  # )
 
   @property
   def password(self):
