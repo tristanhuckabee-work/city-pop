@@ -6,7 +6,8 @@ import follows from './follows';
 
 const rootReducer = combineReducers({
   session,
-  songs
+  songs,
+  follows
 });
 
 

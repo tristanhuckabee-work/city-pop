@@ -17,7 +17,7 @@ main {
   gap: 5px;
   height: calc(100vh - 150px);
   padding: 10px;
-  width: 80%;
+  width: 75%;
 }
 #following {
   align-items: flex-start;
@@ -28,6 +28,6 @@ main {
   gap: 5px;
   padding: 10px;
   height: calc(100vh - 150px);
-  width: 15%;
+  width: 25%;
   flex-grow: 1;
 }

@@ -52,3 +52,8 @@ class User(db.Model, UserMixin):
       'username': self.username,
       'image_url': self.image_url
     }
+  # for use in getting recommended follows
+  def to_dict_recs(self):
+    return {
+      'following': [user.followed_to_dict() for user in self.following]
+    }

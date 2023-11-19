@@ -9,7 +9,11 @@ function SongCard({ song }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const likes = useSelector(state => state.likes);
-  
+  const defaultIMG = "https://res.cloudinary.com/dzsgront4/image/upload/v1700367882/default-album_rbfna6.png";
+  // const image = song.image_url != "" ? song.image_url : defaultImage;
+  const [trackURL, setTrackURL] = useState(song.image_url);
+
+
   const userOpts = song.user.id == sessionUser.id;
   const likeSong = () => {
     console.log('like/unlike song');
@@ -21,7 +25,7 @@ function SongCard({ song }) {
       className='song-card'
       key={`song-card-${song}`}
     >
-      <img src={song.image_url} alt='track image'></img>
+      <img onError={()=>setTrackURL(defaultIMG)} src={trackURL} alt='track image'></img>
       <div className='song-card-info'>
         <h3>{song.name}</h3>
         <p>{song.user.username}</p>

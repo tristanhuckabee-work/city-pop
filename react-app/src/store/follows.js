@@ -1,46 +1,76 @@
-const CREATE   = 'songs/CREATE';
-const READ_ALL = 'songs/READ_ALL';
-const READ_ONE = 'songs/READ_ONE';
+const FOLLOW   = 'songs/CREATE';
+const READ_ING = 'songs/READ_ING';
+const READ_ERS = 'songs/READ_ERS';
+const READ_REC = 'songs/READ_REC';
 const UPDATE   = 'songs/UPDATE';
-const DELETE   = 'songs/DELETE';
 
-const addSong = (payload) => ({type: CREATE, payload})
-const getAll  = (payload) => ({type: READ_ALL, payload})
-const getOne  = (payload) => ({type: READ_ONE, payload})
-const editOne = (payload) => ({type: UPDATE, payload})
-const delOne  = (payload) => ({type: DELETE, payload})
+const follow = (payload) => ({type: FOLLOW, payload})
+const getFollowing  = (payload) => ({type: READ_ING, payload})
+const getFollowers  = (payload) => ({type: READ_ERS, payload})
+const getRecommended= (payload) => ({type: READ_REC, payload})
+const un_follow = (payload) => ({type: UPDATE, payload})
 
 export const get_following = () => async dispatch => {
   const res = await fetch('/api/follows/following');
   const data = await res.json();
   
   if (res.ok) {
-    dispatch(getAll(data));
+    dispatch(getFollowing(data.follows));
+    return data;
+  }
+  return data;
+}
+export const get_followers = () => async dispatch => {
+  const res = await fetch('/api/follows/followers');
+  const data = await res.json();
+  
+  if (res.ok) {
+    dispatch(getFollowers(data.follows));
+    return data;
+  }
+  return data;
+}
+export const get_recommended = () => async dispatch => {
+  const res = await fetch('/api/follows/recommended');
+  const data = await res.json();
+  
+  if (res.ok) {
+    dispatch(getRecommended(data.recs));
     return data;
   }
   return data;
 }
 
-export default function reducer(state = {}, action) {
+let initialState = {
+  following:   {},
+  followers:   {},
+  recommended: {}
+}
+
+export default function reducer(state = initialState, action) {
 	let newState = {...state};
   switch (action.type) {
-		case CREATE:
-      newState[action.payload.id] = action.payload;
+		case FOLLOW:
+      newState.following[action.payload.id] = action.payload;
 			return newState;
-		case READ_ALL:
-      action.payload.songs.forEach(song => {
-        newState[song.id] = song;
+		case READ_ING:
+      action.payload.forEach(follow => {
+        newState.following[follow.id] = follow;
       });
       return newState;
-    case READ_ONE:
-
+    case READ_ERS:
+      action.payload.forEach(follow => {
+        newState.followers[follow.id] = follow;
+      });
+      return newState;
+    case READ_REC:
+      action.payload.forEach(follow => {
+        newState.recommended[follow.id] = follow
+      });
       return newState;
     case UPDATE:
-
-      return newState;
-    case DELETE:
-
-      return newState;
+      newState.following[action.payload.id] = action.payload;
+			return newState;
 		default:
 			return state;
 	}

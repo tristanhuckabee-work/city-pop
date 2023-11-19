@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import SearchBar from './SearchBar';
 
 import { baseLogo, hoverLogo } from './nav-utils';
 import './Navigation.css';
@@ -33,7 +34,16 @@ function Navigation({ isLoaded }) {
       </NavLink>
       {(
         sessionUser && (
-            <ProfileButton user={sessionUser} />
+          <>
+            <SearchBar />
+            <span id='nav-right'>
+              <OpenModalButton
+                buttonText="UPLOAD"
+              // modalComponent={<SongForm />}
+              />
+              <ProfileButton user={sessionUser} />
+            </span>
+          </>
         )
       ) || (
           <div className='nav-right'>

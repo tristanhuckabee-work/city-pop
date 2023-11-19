@@ -18,9 +18,30 @@ class Follow(db.Model):
   follower = db.relationship('User', foreign_keys=[follower_id], back_populates='following')
   followed = db.relationship('User', foreign_keys=[followed_id], back_populates='followers')
 
-  def to_dict(self):
+  def debug_dict(self):
     return {
       'id': self.id,
+      'isFollowed': self.isFollowed,
       'follower': self.follower.to_dict_children(),
       'followed': self.followed.to_dict_children()
+    }
+    
+  def follower_to_dict(self):
+    return {
+      'id': self.id,
+      'isFollowed': self.isFollowed,
+      'user': self.follower.to_dict_children()
+    }
+  
+  def followed_to_dict(self):
+    return {
+      'id': self.id,
+      'isFollowed': self.isFollowed,
+      'user': self.followed.to_dict_children()
+    }
+  
+  def followed_recs(self):
+    return {
+      'isFollowed': self.isFollowed,
+      'recs': self.followed.to_dict_recs()
     }
