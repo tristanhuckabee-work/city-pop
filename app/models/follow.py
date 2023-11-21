@@ -43,5 +43,5 @@ class Follow(db.Model):
   def followed_recs(self):
     return {
       'isFollowed': self.isFollowed,
-      'recs': self.followed.to_dict_recs()
+      'recs': self.followed.to_dict_recs()['following']
     }

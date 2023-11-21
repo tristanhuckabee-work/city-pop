@@ -54,16 +54,19 @@ export default function reducer(state = initialState, action) {
       newState.following[action.payload.id] = action.payload;
 			return newState;
 		case READ_ING:
+      console.log('ING', action.payload);
       action.payload.forEach(follow => {
         newState.following[follow.id] = follow;
       });
       return newState;
     case READ_ERS:
+      console.log('ERS', action.payload);
       action.payload.forEach(follow => {
         newState.followers[follow.id] = follow;
       });
       return newState;
     case READ_REC:
+      console.log('REC', action.payload);
       action.payload.forEach(follow => {
         newState.recommended[follow.id] = follow
       });

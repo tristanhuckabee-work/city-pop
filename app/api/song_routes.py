@@ -1,13 +1,13 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.api.utils import upload_image, upload_track
+from app.api.utils import upload_image, upload_track, remove_image, remove_track
 from app.models import Song, db
-# from app.forms import SongForm
+from app.forms import SongForm
 
 song_routes = Blueprint('songs', __name__)
 
 
-#! NOT DONE
+#!NOT DONE
 # GET /songs : Get all Songs
 @song_routes.route('/', methods=['GET'])
 def get_all_songs():
@@ -24,98 +24,96 @@ def get_all_songs():
 
 
 # GET /songs/:song_id : Get Song Details by ID
-# @song_routes.route('/<int:id>', methods=['GET'])
-# def get_song(id):
-#   """
-#   # GET /api/songs/:song_id : Get Song Details by ID
-#   """
-#   song = Song.query.get(int(id))
-#   if (song):
-#     return song.to_dict()
-#   else:
-#     return {'message': 'Song not found'}, 404
+@song_routes.route('/<int:id>', methods=['GET'])
+def get_song(id):
+  """
+  # GET /api/songs/:song_id : Get Song Details by ID
+  """
+  song = Song.query.get(int(id))
+  if (song):
+    return song.to_dict()
+  else:
+    return {'message': 'Song not found'}, 404
 
-# #! NOT DONE
-# # POST /songs : Create a New Song
+
+# POST /songs : Create a New Song
 # @song_routes.route('/', method=['POST'])
 # @login_required
 # def post_song():
 #   """
 #   POST /songs : Create a New Song
 #   """
-#   # form = SongForm()
+#   form = SongForm()
   
-#   # form['csrf_token'].data = request.cookies['csrf_token']
-#   # if form.validate_on_submit():
-#   #   song = Song(
-#   #     name=form.data['name'],
-#   #     genre=form.data['genre'],
-#   #     image_url=upload_image(form.data['image_url']),
-#   #     track_url=upload_track(form.data['track_url']),
-#   #     user_id=current_user.id
-#   #   )
-#   # 
-#   #   db.session.add(song)
-#   #   db.session.commit()
-#   # 
-#   #   return song.to_dict(), 201
-#   # return form.errors, 400
-#   pass
+#   form['csrf_token'].data = request.cookies['csrf_token']
+#   if form.validate_on_submit():
+#     song = Song(
+#       name=form.data['name'],
+#       genre=form.data['genre'],
+#       image_url=upload_image(form.data['image_url']),
+#       track_url=upload_track(form.data['track_url']),
+#       user_id=current_user.id
+#     )
+  
+#     db.session.add(song)
+#     db.session.commit()
+  
+#     return song.to_dict(), 201
+#   return form.errors, 400
 
-# #! NOT DONE
-# # PATCH /songs/:song_id : Update a Song by ID
+
+# PATCH /songs/:song_id : Update a Song by ID
 # @song_routes.route('/<int:id>', methods=['PATCH'])
 # @login_required
 # def update_song(id):
 #   """
 #   PATCH /songs/:song_id : Update a Song by ID
 #   """
-#   # form = SongForm()
+#   form = SongForm()
   
-#   # form['csrf_token'].data = request.cookies['csrf_token']
-#   # song = Song.query.get(id)
-#   # if not song:
-#   #   return {'message': 'Song not found'}, 404
-#   # elif song.user_id != current_user.id:
-#   #   return {'message': 'Song not Owned'}, 403
+#   form['csrf_token'].data = request.cookies['csrf_token']
+#   song = Song.query.get(id)
   
-#   # if form.validate_on_submit():
-#   #   if form.data['name']:
-#   #     song.name=form.data['name']
-#   #   if form.data['genre']:
-#   #     song.genre=form.data['genre']
-#   #   if form.data['image_url']:
-#   #     song.image_url=upload_image(form.data['image_url'])
-#   #   if form.data['track_url']:
-#   #     song.track_url=upload_track(form.data['track_url'])
+#   if not song:
+#     return {'message': 'Song not found'}, 404
+#   elif song.user_id != current_user.id:
+#     return {'message': 'Song not Owned'}, 403
+  
+#   if form.validate_on_submit():
+#     if form.data['name']:
+#       song.name=form.data['name']
+#     if form.data['genre']:
+#       song.genre=form.data['genre']
+#     if form.data['image_url']:
+#       song.image_url=upload_image(form.data['image_url'])
+#     if form.data['track_url']:
+#       song.track_url=upload_track(form.data['track_url'])
       
-#   #   db.session.commit()
-#   #   return song.to_dict(), 200
-#   # return form.errors, 400
-#   pass
+#     db.session.commit()
+#     return song.to_dict(), 200
+#   return form.errors, 400
 
-# #! NOT DONE
-# # DELETE /songs/:song_id : Delete a Song by ID
+#!NOT DONE
+# DELETE /songs/:song_id : Delete a Song by ID
 # @song_routes.route('/<int:id>', methods=['DELETE'])
 # @login_required
 # def delete_song(id):
 #   """
 #   DELETE /songs/:song_id : Delete a Song by ID
 #   """
-#   # song = Song.query.get(int(id))
-#   # if not song:
-#   #   return {'message': 'Song not found'}, 404
-#   # elif song.user_id != current_user.id:
-#   #   return {'message': 'Song not Owned'}, 403
-#   # else:
-#   #   if song.image_url != "":
-#   #     remove_image(song.image_url)
-#   #   remove_track(song.track_url)
+#   song = Song.query.get(int(id))
+#   if not song:
+#     return {'message': 'Song not found'}, 404
+#   elif song.user_id != current_user.id:
+#     return {'message': 'Song not Owned'}, 403
+#   else:
+#     if song.image_url != "":
+#       remove_image(song.image_url)
+#     remove_track(song.track_url)
     
-#   #   db.session.delete(song)
-#   #   db.session.commit()
-#   #   return {'message':'Successfully Deleted'}
-#   pass
+#     db.session.delete(song)
+#     db.session.commit()
+#     return {'message':'Successfully Deleted'}
 
 # COMMENTS ----------------------------------
 

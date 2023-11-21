@@ -55,5 +55,7 @@ class User(db.Model, UserMixin):
   # for use in getting recommended follows
   def to_dict_recs(self):
     return {
+      'user': self.to_dict_children(),
+      'followers': [user.follower_to_dict() for user in self.following],
       'following': [user.followed_to_dict() for user in self.following]
     }
