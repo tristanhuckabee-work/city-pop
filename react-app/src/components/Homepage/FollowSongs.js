@@ -6,7 +6,7 @@ import SongCard from '../SongCard';
 import './Homepage.css';
 
 function FollowSongs() {
-  const songs = useSelector(state => state.songs);
+  const songs = useSelector(state => state?.songs);
 
   const recentSongsFromFollowing = () => {
     let comp = [];

@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from "../OpenModalButton";
 import { get_all_songs } from '../../store/songs';
 import { get_following, get_recommended } from '../../store/follows';
-import './Homepage.css';
 import FollowingAside from './Following';
 import FollowSongs from './FollowSongs';
+import './Homepage.css';
 
 function Homepage() {
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ function Homepage() {
     dispatch(get_following());
     dispatch(get_recommended());
   }, [dispatch])
+
 
   if (sessionUser) {
     return (

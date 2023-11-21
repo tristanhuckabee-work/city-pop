@@ -1,8 +1,8 @@
-const FOLLOW   = 'songs/CREATE';
-const READ_ING = 'songs/READ_ING';
-const READ_ERS = 'songs/READ_ERS';
-const READ_REC = 'songs/READ_REC';
-const UPDATE   = 'songs/UPDATE';
+const FOLLOW   = 'follows/CREATE';
+const READ_ING = 'follows/READ_ING';
+const READ_ERS = 'follows/READ_ERS';
+const READ_REC = 'follows/READ_REC';
+const UPDATE   = 'follows/UPDATE';
 
 const follow = (payload) => ({type: FOLLOW, payload})
 const getFollowing  = (payload) => ({type: READ_ING, payload})
@@ -15,6 +15,7 @@ export const get_following = () => async dispatch => {
   const data = await res.json();
   
   if (res.ok) {
+    console.log('ING', data)
     dispatch(getFollowing(data.follows));
     return data;
   }
@@ -25,6 +26,7 @@ export const get_followers = () => async dispatch => {
   const data = await res.json();
   
   if (res.ok) {
+    console.log(data)
     dispatch(getFollowers(data.follows));
     return data;
   }
@@ -35,6 +37,7 @@ export const get_recommended = () => async dispatch => {
   const data = await res.json();
   
   if (res.ok) {
+    console.log('RECS', data)
     dispatch(getRecommended(data.recs));
     return data;
   }
@@ -48,25 +51,27 @@ let initialState = {
 }
 
 export default function reducer(state = initialState, action) {
-	let newState = {...state};
+	let newState = {
+    following: {...state.following},
+    followers: {...state.followers},
+    recommended: {...state.recommended}
+  };
+  
   switch (action.type) {
 		case FOLLOW:
       newState.following[action.payload.id] = action.payload;
 			return newState;
 		case READ_ING:
-      console.log('ING', action.payload);
       action.payload.forEach(follow => {
         newState.following[follow.id] = follow;
       });
       return newState;
     case READ_ERS:
-      console.log('ERS', action.payload);
       action.payload.forEach(follow => {
         newState.followers[follow.id] = follow;
       });
       return newState;
     case READ_REC:
-      console.log('REC', action.payload);
       action.payload.forEach(follow => {
         newState.recommended[follow.id] = follow
       });
