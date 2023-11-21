@@ -1,0 +1,86 @@
+#song-details {
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-start;
+}
+.sd-left {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 75%;
+}
+.sd-song {
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+}
+.sd-song img {
+  width: 30%;
+  border-radius: 10px 3px 3px 3px;
+}
+.sds-right {
+  background-color: #ccc;
+  width: 100%;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sdsr-bot {
+  /* background-color: blue; */
+  width: 100%;
+  min-height: 100px;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-end;
+}
+.sdsr-bot span {
+  align-items: center;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  width: 100%;
+}
+.sd-comments {
+  
+}
+.sd-right {
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: fit-content;
+  padding: 10px;
+  position: fixed;
+  right: 15%;
+  top:95px;
+  width: 17.25%;
+  flex-grow: 1;
+}
+
+.sd-user {
+
+}
+.sd-songs {
+
+}
+
+.genre {
+  background-color: #fc466b;
+  border-radius: 10px;
+  color: white;
+  padding: 3px 10px;
+  width: fit-content
+}

@@ -58,11 +58,11 @@
   width: calc(30vw - 40px);
 }
 #login-form button.demo-login {
-  border-color: #ffa600;
-  color: #ffa600;
+  border-color: #fc466b;
+  color: #fc466b;
 }
 #login-form button.demo-login:hover {
-  background-color: #ffa600;
-  color: black;
+  background-color: #fc466b;
+  color: white;
   cursor: pointer;
 }
