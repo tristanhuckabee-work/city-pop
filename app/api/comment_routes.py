@@ -17,9 +17,9 @@ def delete_comment(id):
   comment = Comment.query.get(int(id))
   
   if not comment:
-    return {'message': 'Comment Not Found'}, 404     
+    return {'error': 'Comment Not Found'}, 404     
   elif comment.user_id != current_user.id:
-    return {'message': 'Comment Not Ownded'}, 403
+    return {'error': 'Comment Not Ownded'}, 403
   else:
     db.session.delete(comment)
     db.session.commit()

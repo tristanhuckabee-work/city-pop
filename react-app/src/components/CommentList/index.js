@@ -22,7 +22,7 @@ function CommentList({song_id}) {
         <CommentCard comment={curr} />
       )
     }
-    return comp;
+    return comp.reverse();
   }
 
   return (
