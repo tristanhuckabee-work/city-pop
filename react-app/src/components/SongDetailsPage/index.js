@@ -1,22 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_all_songs, set_current } from '../../store/songs';
+import { get_all_songs, get_one_song } from '../../store/songs';
+import { get_for_current } from '../../store/comments';
 import OpenModalButton from "../OpenModalButton";
+import CommentForm from './commentForm';
+import CommentList from '../CommentList';
 import './songdetails.css'
 
 function SongDetailPage() {
   const id = +window.location.href.split('/')[4];
-  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const currentSong = useSelector(state => state.songs.songs[id]);
+  const songs = useSelector(state => state.songs.songs);
   const likes = useSelector(state => state.likes);
+
+  const [currentSong, setCurrentSong] = useState(null);
+  const [cSongDate, setCSongDate] = useState(null);
+  const userOpts = currentSong?.user.id == sessionUser?.id;
+  const userSongs = [];
+  for (let key in songs) {
+    const song = songs[key];
+    userSongs.push(song);
+  }
+
+  useEffect(() => {
+    dispatch(get_one_song(id))
+      .then(res => {
+        setCurrentSong(res)
+        setCSongDate(res.updated_at)
+        return res;
+      })
+  }, [dispatch])
 
   const likeSong = () => {
     console.log('like/unlike song');
   }
   const isLiked = likes?.[currentSong.id] ? <i className='fas fa-heart fa-2x' onClick={likeSong}></i> : <i className='far fa-heart fa-2x' onClick={likeSong}></i>
+  const formatDate = () => {
+    if (cSongDate) {
+      const months = ['Janua', 'Febru', 'March', 'April', 'May', 'June', 'July', 'Augus', 'Septe', 'Octob', 'Novem', 'Dec']
+      const splitUp = cSongDate?.split(' ');
+      const day = splitUp[1];
+      let month = splitUp[2];
+      months?.forEach((m, i) => {
+        if (m.startsWith(month)) month = i;
+      });
+      const year = splitUp[3];
+      return `${month} / ${day} / ${year}`;
+    }
+
+
+  }
 
   return (
     <main id='song-details'>
@@ -26,17 +61,22 @@ function SongDetailPage() {
           <div className='sds-right'>
             <h1>{currentSong?.name}</h1>
             <span className='sdsr-bot'>
-              <p className='genre'>#{currentSong?.genre}</p>
               <span>
-                user controls
+                <p className='date'>{formatDate()}</p>
+                {userOpts && (
+                  <span className='sd-user-opts'>
+                    <i className='fas fa-delete-left fa-2x'></i>
+                    <i className='fas fa-pen-to-square fa-2x'></i>
+                  </span>
+                )}
                 {isLiked}
               </span>
             </span>
           </div>
         </div>
         <div className='sd-comments'>
-          Comment Form Here
-          Comments Here
+          <CommentForm song_id={id} />
+          <CommentList song_id={id} />
         </div>
       </section>
       <section className='sd-right'>

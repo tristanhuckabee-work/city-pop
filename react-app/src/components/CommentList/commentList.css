@@ -1,0 +1,67 @@
+.comment-board {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+}
+.comment-board i:hover {
+  color : #fc466b;
+  cursor: pointer;
+}
+.comment-card {
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+.cc-user {
+  align-items: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+.cc-user img {
+  background-color: red;
+  border-radius: 3px 0 0 0;
+  width: 30px;
+  height: 30px;
+}
+.cc-user span {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+.ccul {}
+.ccur {
+  align-items: flex-end;
+  height: 30px;
+  font-size: 1.5em;
+}
+.cc-content {
+  padding: 5px 0;
+  padding: 10px;
+}
+.cc-date {
+  text-align: right;
+  color: #888;
+  font-size: .75em;
+  padding: 0 10px 10px 0;
+  width: 100%;
+}
+.delConfirm {
+  align-items: center;
+  background-color: #fff0f3;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+}

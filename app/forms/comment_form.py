@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextAreaField
+from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
-import math
 
 
 class CommentForm(FlaskForm):

@@ -25,6 +25,16 @@ export const get_all_songs = () => async dispatch => {
   }
   return data;
 }
+export const get_one_song = (id) => async dispatch => {
+  const res = await fetch(`/api/songs/${id}`);
+  const data = await res.json();
+
+  if (res.ok) {
+    dispatch(getOne(data));
+    return data;
+  }
+  return data;
+}
 
 const initialState = {songs: {}, currentSong: null};
 
@@ -43,7 +53,7 @@ export default function reducer(state = initialState, action) {
       });
       return newState;
     case READ_ONE:
-
+      newState.currentSong = action.payload;
       return newState;
     case UPDATE:
 
