@@ -27,7 +27,7 @@ function CommentForm({song_id, func}) {
     setContent('')
   }
 
-
+  
   return (
     <form onSubmit={(e) => submitComment(e)}>
       <input
