@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.api.utils import upload_image, upload_track, remove_image, remove_track
+from app.api.utils import upload_image
 from app.models import Comment, Song, db
 from app.forms import SongForm, CommentForm
 
