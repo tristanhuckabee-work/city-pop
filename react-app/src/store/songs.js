@@ -12,8 +12,17 @@ const editOne = (payload) => ({type: UPDATE, payload})
 const delOne  = (payload) => ({type: DELETE, payload})
 const setCurr = (payload) => ({type: PLAY, payload})
 
-export const set_current = (song) => async dispatch => {
-  dispatch(setCurr(song));
+export const add_song = song => async dispatch => {
+  const res = await fetch('/api/songs/new', {
+    method: 'POST',
+    body: song
+  });
+  const data = await res.json();
+
+  if (res.ok) {
+    dispatch(addSong(data))
+  }
+  return data;
 }
 export const get_all_songs = () => async dispatch => {
   const res = await fetch('/api/songs');
@@ -34,6 +43,9 @@ export const get_one_song = (id) => async dispatch => {
     return data;
   }
   return data;
+}
+export const set_current = (song) => async dispatch => {
+  dispatch(setCurr(song));
 }
 
 const initialState = {songs: {}, currentSong: null};

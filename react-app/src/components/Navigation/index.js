@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import SongForm from '../SongForm';
 import SearchBar from './SearchBar';
 
 import { baseLogo, hoverLogo } from './nav-utils';
@@ -39,7 +40,7 @@ function Navigation({ isLoaded }) {
             <span id='nav-right'>
               <OpenModalButton
                 buttonText="UPLOAD"
-              // modalComponent={<SongForm />}
+              modalComponent={<SongForm />}
               />
               <ProfileButton user={sessionUser} />
             </span>

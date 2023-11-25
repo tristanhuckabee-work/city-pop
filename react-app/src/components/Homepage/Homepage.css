@@ -16,10 +16,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  /* height: calc(100vh - 150px); */
+  margin-bottom: 85px;
   padding: 10px;
   width: 75%;
-  /* overflow-y: scroll; */
 }
 #following {
   align-items: flex-start;

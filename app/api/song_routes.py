@@ -36,29 +36,31 @@ def get_song(id):
 
 
 # POST /songs : Create a New Song
-# @song_routes.route('/', method=['POST'])
-# @login_required
-# def post_song():
-#   """
-#   POST /songs : Create a New Song
-#   """
-#   form = SongForm()
+@song_routes.route('/new', methods=['POST'])
+@login_required
+def post_new_song():
+  """
+  POST /songs : Create a New Song
+  """
+  print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+  form = SongForm()
   
-#   form['csrf_token'].data = request.cookies['csrf_token']
-#   if form.validate_on_submit():
-#     song = Song(
-#       name=form.data['name'],
-#       genre=form.data['genre'],
-#       image_url=upload_image(form.data['image_url']),
-#       track_url=upload_track(form.data['track_url']),
-#       user_id=current_user.id
-#     )
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', form)
+    song = Song(
+      name=form.data['name'],
+      genre=form.data['genre'],
+      image_url=form.data['image_url'],
+      track_url=form.data['track_url'],
+      user_id=current_user.id
+    )
   
-#     db.session.add(song)
-#     db.session.commit()
+    db.session.add(song)
+    db.session.commit()
   
-#     return song.to_dict(), 201
-#   return form.errors, 400
+    return song.to_dict(), 201
+  return form.errors, 400
 
 
 # PATCH /songs/:song_id : Update a Song by ID
@@ -126,7 +128,6 @@ def add_comment_to_song(id):
   
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', form.data)
     comment = Comment(
       content=form.data['content'],
       song_id=form.data['song_id'],
@@ -137,8 +138,6 @@ def add_comment_to_song(id):
     db.session.commit()
   
     return comment.to_dict(), 201
-  print('!!!!!!!!!!!!!', form.errors)
-
   return form.errors, 400
 
 

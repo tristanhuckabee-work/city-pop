@@ -18,11 +18,7 @@ function CommentForm({song_id, func}) {
     formData.append('content', content);
     formData.append('song_id', song_id);
     formData.append('user_id', sessionUser.id);
-    // const payload = {
-    //   content,
-    //   song_id,
-    //   user_id: sessionUser.id
-    // }
+    
     const res = await dispatch(create_new_comment(formData, song_id))
     setContent('')
   }
