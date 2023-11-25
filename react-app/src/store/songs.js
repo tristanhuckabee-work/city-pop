@@ -34,7 +34,7 @@ export const get_all_songs = () => async dispatch => {
   }
   return data;
 }
-export const get_one_song = (id) => async dispatch => {
+export const get_one_song = id => async dispatch => {
   const res = await fetch(`/api/songs/${id}`);
   const data = await res.json();
 
@@ -44,7 +44,18 @@ export const get_one_song = (id) => async dispatch => {
   }
   return data;
 }
-export const set_current = (song) => async dispatch => {
+export const delete_song = id => async dispatch => {
+  const res = await fetch(`/api/songs/${id}`, {
+    method: 'DELETE'
+  });
+  const data = res.json();
+
+  if (res.ok) {
+    dispatch(delOne(id));
+  }
+  return data;
+}
+export const set_current = song => async dispatch => {
   dispatch(setCurr(song));
 }
 
@@ -71,7 +82,7 @@ export default function reducer(state = initialState, action) {
 
       return newState;
     case DELETE:
-
+      delete newState.songs[action.payload];
       return newState;
     case PLAY:
       newState.currentSong = action.payload;

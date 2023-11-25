@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from "../OpenModalButton";
-import { get_all_songs, set_current } from '../../store/songs';
+import { delete_song, get_all_songs, set_current } from '../../store/songs';
 import './songcard.css'
 
 function SongCard({ song }) {
@@ -62,9 +62,10 @@ function SongCard({ song }) {
     e.stopPropagation();
     console.log('Add to Playlist');
   }
-  const deleteSong = e => {
+  const deleteSong = async (e) => {
     e.stopPropagation();
-    console.log('Delete Song');
+    
+    const res = await dispatch(delete_song(song?.id));
   }
   const editSong = e => {
     e.stopPropagation();

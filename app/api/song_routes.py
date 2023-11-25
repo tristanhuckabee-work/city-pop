@@ -96,25 +96,21 @@ def post_new_song():
 
 #!NOT DONE
 # DELETE /songs/:song_id : Delete a Song by ID
-# @song_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
-# def delete_song(id):
-#   """
-#   DELETE /songs/:song_id : Delete a Song by ID
-#   """
-#   song = Song.query.get(int(id))
-#   if not song:
-#     return {'message': 'Song not found'}, 404
-#   elif song.user_id != current_user.id:
-#     return {'message': 'Song not Owned'}, 403
-#   else:
-#     if song.image_url != "":
-#       remove_image(song.image_url)
-#     remove_track(song.track_url)
-    
-#     db.session.delete(song)
-#     db.session.commit()
-#     return {'message':'Successfully Deleted'}
+@song_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_song(id):
+  """
+  DELETE /songs/:song_id : Delete a Song by ID
+  """
+  song = Song.query.get(int(id))
+  if not song:
+    return {'message': 'Song not found'}, 404
+  elif song.user_id != current_user.id:
+    return {'message': 'Song not Owned'}, 403
+  else:
+    db.session.delete(song)
+    db.session.commit()
+    return {'message':'Successfully Deleted'}
 
 # COMMENTS ----------------------------------
 # POST /songs/:song_id/comments : Add a new Comment to a Song by SongId
