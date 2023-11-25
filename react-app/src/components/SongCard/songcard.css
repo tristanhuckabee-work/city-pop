@@ -39,22 +39,21 @@
 .song-actions {
   align-items: center;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 11vh;
 }
 .song-actions i {
   color: #888888;
   font-size: 1.75em;
 }
-.user-options {
-  align-items: center;
-  border: 2px solid #888888;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.sc-user-actions {
+  border: 2px solid #888;
+  border-radius: 5px;
   padding: 5px;
+}
+.song-card-info span.sc-bot {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 i.fa-heart {
   color: #fc466b;
@@ -63,4 +62,22 @@ i.fa-heart {
 
 .sc-highlite {
   background-color: #ffe8ec;
+}
+.sc-user-actions span.delConf p {
+  background-color: #00000000;
+  color: #444;
+}
+.sc-user-actions span.delConf button {
+  background-color: #00000000;
+  border: 1px solid #fc466b;
+  border-radius: 5px;
+  color: #fc466b;
+  padding: 5px 10px;
+  transition: all 0.2s linear;
+  width: 50px;
+}
+.sc-user-actions span.delConf button:hover {
+  background-color: #fc466b;
+  color: white;
+  cursor: pointer;
 }

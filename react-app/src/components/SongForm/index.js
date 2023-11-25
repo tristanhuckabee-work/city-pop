@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { add_song } from '../../store/songs';
+import { useModal } from '../../context/Modal';
+
 
 import './songForm.css';
 
@@ -9,6 +11,7 @@ function SongForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
+  const { closeModal } = useModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const [audioURL, setAudioURL] = useState('');
