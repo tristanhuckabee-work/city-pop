@@ -25,8 +25,20 @@ def seed_songs():
     user_id=5)
   song6 = Song(name='Uninstall Love', genre='eurobeat',
     track_url="https://res.cloudinary.com/dzsgront4/video/upload/v1649191637/Uninstall_Love_trqnhf.mp4",
-    image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1649267308/cyber-heart-3d-model-max-obj-fbx_xwebql.jpg",
+    image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1652200768/7084145293_e250170668_eoicuh.jpg",
     user_id=6)
+  song7 = Song(name='Condensed Milk', genre='jpop',
+    track_url="https://res.cloudinary.com/dzsgront4/video/upload/v1700886686/condensed-milk_qcq5l9.mp3",
+    image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1700886687/cybermilk_ryth7v.jpg",
+    user_id=12)
+  song8 = Song(name="Don't You Want Me", genre='jpop',
+    track_url="https://res.cloudinary.com/dzsgront4/video/upload/v1700886953/dont-you-want-me_tjwlgq.mp3",
+    image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1649206028/d1da0154c39d3c2ae8e6fb6f24323c63.800x800x1_ruvyhr.png",
+    user_id=13)
+  song9 = Song(name='Hysteric Night Girl', genre='jpop',
+    track_url="https://res.cloudinary.com/dzsgront4/video/upload/v1700886960/hysteric-night-girl_ql1r5q.mp3",
+    image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1649206041/ab67616d0000b2731a8bba168d85553d9b2d47a9_ezchvc.jpg",
+    user_id=13)
 
   db.session.add(song1)
   db.session.add(song2)
@@ -34,6 +46,9 @@ def seed_songs():
   db.session.add(song4)
   db.session.add(song5)
   db.session.add(song6)
+  db.session.add(song7)
+  db.session.add(song8)
+  db.session.add(song9)
 
   db.session.commit()
 
