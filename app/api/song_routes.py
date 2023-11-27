@@ -21,7 +21,6 @@ def get_all_songs():
   songs = Song.query.all()
   return {'songs': [song.to_dict() for song in songs]}
 
-
 # GET /songs/:song_id : Get Song Details by ID
 @song_routes.route('/<int:id>', methods=['GET'])
 def get_song(id):
@@ -33,7 +32,6 @@ def get_song(id):
     return song.to_dict()
   else:
     return {'message': 'Song not found'}, 404
-
 
 # POST /songs : Create a New Song
 @song_routes.route('/new', methods=['POST'])
@@ -61,7 +59,6 @@ def post_new_song():
   
     return song.to_dict(), 201
   return form.errors, 400
-
 
 # PATCH /songs/:song_id : Update a Song by ID
 # @song_routes.route('/<int:id>', methods=['PATCH'])
@@ -94,7 +91,6 @@ def post_new_song():
 #     return song.to_dict(), 200
 #   return form.errors, 400
 
-#!NOT DONE
 # DELETE /songs/:song_id : Delete a Song by ID
 @song_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
@@ -135,7 +131,6 @@ def add_comment_to_song(id):
   
     return comment.to_dict(), 201
   return form.errors, 400
-
 
 # GET /songs/:song_id/comments : Get All Comments by SongId
 @song_routes.route('/<int:id>/comments', methods=['GET'])

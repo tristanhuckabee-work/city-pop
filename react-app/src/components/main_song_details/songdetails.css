@@ -1,0 +1,112 @@
+#song-details {
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-start;
+}
+.sd-left {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 75%;
+}
+.sd-song {
+  align-items: flex-end;
+  border: 1px solid var(--border-grey);
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+}
+.sd-song img {
+  width: 30%;
+  border-radius: 10px 3px 3px 3px;
+}
+.sds-right {
+  width: 100%;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.sdsr-bot {
+  width: 100%;
+  min-height: 100px;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-end;
+}
+.sdsr-bot span {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  width: 100%;
+}
+.sd-comments {
+  border: 1px solid var(--border-grey);
+  padding: 10px;
+  width: 100%;
+}
+.sd-comments form {
+  align-items: center;
+  display:flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 20px;
+}
+.sd-comments form input {
+  flex-grow: 1;
+  height: 50px;
+  font-size: 1.5em;
+  padding: 0 5px;
+}
+.sd-comments button[type='submit'] {
+  height: 50px;
+  width: 80px;
+}
+.sd-right {
+  align-items: flex-start;
+  border: 1px solid var(--border-grey);
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: fit-content;
+  padding: 10px;
+  position: fixed;
+  right: 15%;
+  top:95px;
+  width: 17.25%;
+  flex-grow: 1;
+}
+
+.sd-user {
+
+}
+.sd-songs {
+
+}
+
+.date {
+  align-self: flex-end;
+  color: #888;
+  font-weight: bold;
+  justify-self: flex-end;
+  margin-right: 10px;
+}
+span.sd-user-opts {
+  align-items: center;
+  border: 2px solid #888888;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 5px 10px;
+  width: fit-content;
+}

@@ -1,0 +1,146 @@
+#header-nav {
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid var(--border-grey);
+  display: flex;
+  height: 50px;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px 15%;
+  position: fixed;
+}
+#header-nav img { height: 40px }
+.nav-right {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+}
+.nav-right button {
+  background-color: white;
+  border: 2px solid var(--pink);
+  border-radius: 5px;
+  color: var(--pink);
+  font-weight: bold;
+  height: 25px;
+  transition: 0.2s linear all;
+  width: 150px;
+}
+.nav-right button:hover {
+  background-color: var(--pink);
+  color: white;
+  cursor: pointer;
+}
+.fa-user-circle:hover {
+  color: var(--pink);
+  cursor: pointer;
+}
+.profile-dropdown {
+  align-items: center;
+  background-color: white;
+  background-image: url('./grid-pattern.png');
+  background-position: center;
+  background-size: 50px 50px;
+  border-bottom: 1px solid var(--border-grey);
+  box-shadow: 0 10px 10px var(--border-grey);
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  padding: 5px 15%;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 100%;
+  z-index: 10;
+}
+#nav-user {
+  align-items: center;
+  background-color: white;
+  border: 1px solid var(--border-grey);
+  border-radius: 5px;
+  ;
+  display: flex;
+  font-weight: bold;
+  gap: 10px;
+  height: 25px;
+  justify-content: flex-end;
+  padding: 0 10px;
+}
+.profile-dropdown button {
+  background-color: transparent;
+  border: 2px solid var(--pink);
+  border-radius: 5px;
+  color: var(--pink);
+  font-weight: bold;
+  height: 25px;
+  transition: 0.2s linear all;
+  width: 150px;
+}
+.profile-dropdown button:hover {
+  background-color: var(--pink);
+  color: white;
+  cursor: pointer;
+}
+#nav-right {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+#nav-right button {
+  background-color: var(--transparent);
+  border-radius: 0;
+  border: none;
+  border-left: 2px solid var(--border-grey);
+  font-size: 1.1em;
+  height: 35px;
+  padding: 0 10px 0 15px;
+}
+#nav-right button:hover {
+  color: var(--pink);
+  cursor: pointer;
+}
+#header-nav form {
+  align-items: center;
+  border: 1px solid #888;
+  display: flex;
+  height: 35px;
+  justify-content: center;
+  width: 40%;
+}
+#header-nav form select {
+  background-color: #fff;
+  background-color: none;
+  border: none;
+  border-right: 1px solid #888;
+  color: #888;
+  height: 100%;
+  font-size: 1em;
+  text-align: center;
+}
+#header-nav form select:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+#header-nav form input {
+  background-color: #fff;
+  border: #0000;
+  flex-grow: 1;
+  font-size: 1.5em;
+  height: 100%;
+  padding-left: 5px;
+}
+#header-nav form button {
+  background-color: #fff;
+  border: none;
+  border-left: 1px solid #888;
+  color: #888;
+  height: 100%;
+  padding-left: 10px;
+  text-align: left;
+  width:10%;
+}
+#header-nav form button:hover {
+  background-color: #eee;
+  cursor: pointer;
+}

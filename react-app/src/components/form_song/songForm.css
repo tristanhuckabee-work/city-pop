@@ -1,0 +1,149 @@
+@keyframes loadCircle {
+  0%   {transform: rotate(0deg)}
+  25%  {transform: rotate(90deg)}
+  50%  {transform: rotate(180deg)}
+  75%  {transform: rotate(270deg)}
+  100% {transform: rotate(360deg)}
+}
+
+.song-modal {
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 15px;
+  display:flex;
+  gap: 5px;
+  justify-content: flex-start;
+  height: fit-content;
+  overflow-x: hidden;
+  padding: 10px;
+}
+.song-form {
+  align-items: flex-start;
+  border: 1px solid #888;
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  justify-content: flex-start;
+  padding: 10px;
+}
+.song-form input[type='text'] {
+  width: 100%;
+}
+.song-modal-deets {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  min-width: 25vw;
+  /* padding: 10px; */
+  position: relative;
+}
+.isLoading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 102px;
+}
+.isLoading p {
+  background-color: white;
+  position: relative;
+  bottom: 0;
+  color: #888;
+  font-size: .75em;
+  text-align: center;
+  width: fit-content;
+  z-index: 2;
+}
+.toRotate {
+  animation: loadCircle 2.5s ease infinite;
+  position: absolute;
+  left: calc(50% - 51px);
+  width: 102px;
+  height: 102px;
+}
+.load-circle-outer {
+  position: absolute;
+  border-radius: 50%;
+  background-color:var(--pink);
+  height: 100px;
+  width: 100px;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+}
+.load-circle-inner {
+  position: absolute;
+  border-radius: 50%;
+  background-color:white;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+  height: 80px;
+  width: 80px;
+}
+.load-circle-bar {
+  background-color: white;
+  /* border-radius: 5px 0 5px 0; */
+  width: 50%;
+  height: 10px;
+  position: absolute;
+  top: calc(50% - 5px);
+}
+
+.song-form ul {
+  width: 100%;
+  padding: 5px;
+}
+.form-specs {
+  list-style: none;
+  color: var(--pink)
+}
+.sfm-preview {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+.sfmp-inner {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 5px;
+}
+.sfmp-inner audio {
+  width: 100%;
+}
+.sfm-preview img {
+  object-fit: cover;
+  border-top-right-radius: 10px;
+  width: 120px;
+  height: 120px;
+}
+.song-modal button {
+  background-color: white;
+  border: 2px solid var(--pink);
+  border-radius: 100px;
+  color: var(--pink);
+  padding: 5px;
+  width: 100%;
+  transition: all .3s linear;
+}
+.song-modal button:hover {
+  background-color: var(--pink);
+  color:white;
+  cursor: pointer;
+}
+.song-modal button.cancel {
+  border-color: #888;
+  color: #888;
+}
+.song-modal button.cancel:hover {
+  background-color: #888;
+  color:white;
+  cursor: pointer;
+}

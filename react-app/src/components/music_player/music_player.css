@@ -1,0 +1,46 @@
+#music-player {
+  align-items: center;
+  background-color: white;
+  border-top: 1px solid var(--border-grey);
+  bottom: 0;
+  display: flex;
+  gap: 10px;
+  height: 75px;
+  justify-content: flex-start;
+  left: 0;
+  padding: 0 10%;
+  position: fixed;
+  width: 100%;
+}
+#mp-song-info {
+  align-items: flex-start;
+  border-right: 2px solid var(--border-grey);
+  display:flex;
+  gap: 10px;
+  justify-content: flex-start;
+  padding-right: 10px;
+  width: 30%;
+}
+#mp-song-info .mp-image {
+  background-color: #eee;
+  border: 1px solid var(--border-grey);
+  width: 55px;
+  height: 55px;
+}
+.mpsi-inner p:first-child {font-weight: bold}
+
+
+.songTitle { color: #252525 }
+#music-player .rhap_container {box-shadow: 0 0 0 var(--transparent);}
+.rhap_time { color: #888 }
+.rhap_progress-filled, .rhap_volume-filled {
+  background-color: var(--pink);
+  /* background-image: url('https://res.cloudinary.com/dzsgront4/image/upload/v1649381246/Untitled_1_fbdypx.svg'); */
+  background-size: 100px;
+}
+.rhap_volume-indicator { background-color: var(--pink) }
+/* .rhap_main-controls svg:hover { background-image: none; color: var(--pink) } */
+.rhap_main-controls path { color: #aaa }
+.rhap_main-controls path:hover { color: var(--pink) }
+.rhap_volume-container svg { color: #aaa }
+.rhap_volume-container svg:hover { color: var(--pink) }

@@ -1,0 +1,83 @@
+.song-card {
+  align-items: flex-start;
+  background-color: ;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  padding: 10px;
+  width: 100%;
+}
+.song-card img {
+  background-color: #888888;
+  border-radius: 3px;
+  height: 11vh;
+  width: 11vh;
+}
+.song-card-info {
+  align-items: flex-start;
+  border-left: 2px solid #eeeeee;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 11vh;
+  padding-left: 10px;
+  width: 100%;
+}
+.song-card-info span {
+  align-items: center;
+  display:flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+.song-card-info span p:first-child {
+  background-color: var(--pink);
+  border-radius: 10px;
+  color: white;
+  padding: 3px 10px;
+}
+.song-actions {
+  align-items: center;
+  display: flex;
+}
+.song-actions i {
+  color: #888888;
+  font-size: 1.75em;
+}
+.sc-user-actions {
+  border: 2px solid #888;
+  border-radius: 5px;
+  padding: 5px;
+}
+.song-card-info span.sc-bot {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+i.fa-heart {
+  color: var(--pink);
+  padding: 0 10px;
+}
+
+.sc-highlite {
+  background-color: #ffe8ec;
+}
+.sc-user-actions span.delConf p {
+  background-color: var(--transparent);
+  color: #444;
+}
+.sc-user-actions span.delConf button {
+  background-color: var(--transparent);
+  border: 1px solid var(--pink);
+  border-radius: 5px;
+  color: var(--pink);
+  padding: 5px 10px;
+  transition: all 0.2s linear;
+  width: 50px;
+}
+.sc-user-actions span.delConf button:hover {
+  background-color: var(--pink);
+  color: white;
+  cursor: pointer;
+}

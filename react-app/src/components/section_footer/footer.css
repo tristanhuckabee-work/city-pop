@@ -1,0 +1,40 @@
+footer {
+  align-items: center;
+  border: 1px solid var(--border-grey);
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0 100px 0;
+  padding: 10px;
+}
+footer span {
+  align-items: flex-start;
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  width: fit-content;
+}
+footer span a {
+  border: 1px solid var(--border-grey);
+  border-radius: 3px;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+footer span a:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+
+.main-page {
+  margin: 10px 15% 95px 15%;
+  width: calc(70vw * .75 - 8px);
+}
+.splash-page {background-color: blue;}
+.song-page {
+  margin: 10px 15% 95px 15%;
+  width: calc(70vw * .75 - 8px);
+}
+.user-page { margin: 10px 15% 95px 15% }

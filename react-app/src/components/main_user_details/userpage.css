@@ -1,0 +1,109 @@
+#user-details {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+}
+.user-details {
+  border: 1px solid var(--border-grey);
+  border-radius: 15px 15px 0 0;
+  padding: 10px;
+}
+.user-details {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  width: 100%;
+}
+.user-details img {
+  object-fit: cover;
+  border-radius: 10px 3px 3px 3px;
+  height: 131px;
+  width: 131px;
+}
+.user-details > p {
+  flex-grow: 1;
+  height: 131px;
+}
+.user-info {
+  align-items: flex-start;
+  border-right: 1px solid var(--border-grey);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+  padding-right: 10px;
+  width: 35%;
+}
+.user-follow-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: 2fr 1fr;
+  gap: 0 5px;
+  width: 100%;
+}
+.user-follow-details p {
+  text-align: center;
+  background-color: var(--border-grey);
+  border-radius: 0 0 5px 5px;
+  font-size: .75em;
+  padding: 0 5px;
+  height: 1.5em;
+}
+.follow-info {
+  border: 1px solid var(--border-grey);
+  border-radius: 5px 5px 0 0;
+  padding: 10px;
+  text-align: center;
+  /* width: 75px; */
+}
+
+.ud-edit-user {
+  padding: 5px 10px;
+  width: 100%;
+}
+.ud-edit-user form {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 5px;
+}
+.editForm-buttons {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+.editForm-buttons button{
+  background-color: var(--transparent);
+  border: 1px solid var(--pink);
+  border-radius: 3px;
+  color : var(--pink);
+  flex-grow: 1;
+  padding: 5px;
+  transition: all 0.3s linear;
+}
+.editForm-buttons button:hover{
+  background-color: var(--pink);
+  color : white;
+  cursor: pointer;
+}
+input[type='text'] {
+  width: 100%;
+}
+
+.ud-playlists {
+  border: 1px solid var(--border-grey);
+  padding: 10px;
+  width: 100%;
+}
+
+.ud-songs {
+  border: 1px solid var(--border-grey);
+  padding: 10px;
+  width: 100%;
+}

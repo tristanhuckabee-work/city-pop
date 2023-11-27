@@ -44,6 +44,7 @@ export const get_one_song = id => async dispatch => {
   }
   return data;
 }
+export const update_song = song => async dispatch => {}
 export const delete_song = id => async dispatch => {
   const res = await fetch(`/api/songs/${id}`, {
     method: 'DELETE'
@@ -55,6 +56,16 @@ export const delete_song = id => async dispatch => {
   }
   return data;
 }
+export const get_user_songs = id => async dispatch => {
+  const res = await fetch(`/api/users/${id}/songs`);
+  const data = await res.json();
+
+  if (res.ok) {
+    dispatch(getAll(data));
+  }
+  return data;
+}
+
 export const set_current = song => async dispatch => {
   dispatch(setCurr(song));
 }

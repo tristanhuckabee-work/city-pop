@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
-import Navigation from "./components/Navigation";
-import Homepage from "./components/Homepage";
-import Player from "./components/MusicPlayer";
-import SongDetailPage from "./components/SongDetailsPage";
+import Navigation from "./components/navigation";
+import MusicPlayer from "./components/music_player";
+import Main from "./components/main";
+import SongDetailPage from "./components/main_song_details";
+import UserPage from "./components/main_user_details";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,22 +20,19 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <Player song={currentSong}/>
+      <MusicPlayer song={currentSong} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Homepage />
+            <Main />
           </Route>
-          {/* <Route path="/login" >
-            <LoginFormPage />
+          <Route path="/users/:id">
+            <UserPage />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
           <Route path="/songs/:id">
             <SongDetailPage />
           </Route>
-          
+
         </Switch>
       )}
     </>
