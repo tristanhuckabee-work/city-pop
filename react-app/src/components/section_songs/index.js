@@ -6,6 +6,7 @@ import './songList.css';
 
 function SongList() {
   const songs = useSelector(state => state?.songs.songs);
+  console.log(songs);
 
   const formatSongs = () => {
     let comp = [];

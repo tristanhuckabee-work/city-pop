@@ -13,6 +13,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const isFollowed = useSelector(state => state.follows.following[id]);
+  
   const thisUser = useSelector(state => state.session.other);
   const otherFollowers = useSelector(state => state.follows.other?.followers);
   const otherFollowing = useSelector(state => state.follows.other?.following);
@@ -25,11 +26,8 @@ function UserPage() {
 
   useEffect(() => {
     dispatch(getOtherUser(id));
-  }, [dispatch]);
-  useEffect(() => {
-    console.log('other changed')
     dispatch(get_user_songs(id));
-  }, [dispatch, thisUser])
+  }, [dispatch]);
 
   const followUnfollow = () => {
     if (!isCurrentUser) {

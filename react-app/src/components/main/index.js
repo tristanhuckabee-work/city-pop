@@ -27,7 +27,7 @@ function Main() {
       <>
         <main>
           <section id='homepage-songs'>
-            <SongList />
+            <SongList/>
           </section>
           <FollowingAside />
         </main>
