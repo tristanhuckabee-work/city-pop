@@ -1,11 +1,11 @@
 footer {
   align-items: center;
   border: 1px solid var(--border-grey);
-  border-radius: 0 0 15px 15px;
+  border-radius: 5px 5px 15px 15px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  margin: 10px 0 100px 0;
+  margin: 10px 15% 85px 15%;
   padding: 10px;
 }
 footer span {
@@ -26,15 +26,3 @@ footer span a:hover {
   border-color: var(--pink);
   color: var(--pink);
 }
-
-
-.main-page {
-  margin: 10px 15% 95px 15%;
-  width: calc(70vw * .75 - 8px);
-}
-.splash-page {background-color: blue;}
-.song-page {
-  margin: 10px 15% 95px 15%;
-  width: calc(70vw * .75 - 8px);
-}
-.user-page { margin: 10px 15% 95px 15% }

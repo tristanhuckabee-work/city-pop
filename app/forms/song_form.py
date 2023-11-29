@@ -22,8 +22,6 @@ def isMusic(form, field):
 class SongForm(FlaskForm):
   name = StringField('name',
     validators=[DataRequired()])
-  genre = StringField('genre',
-    validators=[DataRequired()])
   image_url = StringField('image_url',
     validators=[DataRequired(), isImage])
   track_url = StringField('track_url',

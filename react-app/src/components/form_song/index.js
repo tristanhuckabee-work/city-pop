@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { add_song } from '../../store/songs';
+import LoadingDiv from '../00_loading';
 import { useModal } from '../../context/Modal';
 
 
@@ -10,16 +11,16 @@ import './songForm.css';
 function SongForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const sessionUser = useSelector(state => state.session.user);
   const { closeModal } = useModal();
-  const [isLoading, setIsLoading] = useState(false);
-
+  const sessionUser = useSelector(state => state.session.user);
+  
   const [audioURL, setAudioURL] = useState('');
   const [audioFile, setAudioFile] = useState(null);
   const [imageURL, setImageURL] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [name, setName] = useState('');
   const [genre, setGenre] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
   }, [audioURL])
@@ -67,22 +68,12 @@ function SongForm() {
     formData.append('user_id', sessionUser.id);
 
     const res = await dispatch(add_song(formData));
-    if (!res.errors) history.push(`/songs/${res?.id}`);
-    console.log('RES:', res);
+    if (!res.errors) {
+      history.push(`/songs/${res.id}`);
+      closeModal();
+    }
   }
 
-  const loadingDiv = () => {
-    return (
-      <div className='isLoading'>
-        <div className='toRotate'>
-          <div className='load-circle-outer'></div>
-          <div className='load-circle-inner'></div>
-          <div className='load-circle-bar'></div>
-        </div>
-        <p>Uploading</p>
-      </div>
-    )
-  }
   const songPreview = () => {
     let content = 'Please Provide the Details or Hit Submit'
     let withSongDetails = (
@@ -95,7 +86,7 @@ function SongForm() {
               <source src={audioURL} />
             </audio>
           </div>
-          <img src={imageURL} />
+          <img src={imageURL} alt='track cover' />
         </div>
         <button onClick={e => handleSubmit(e)}>PUBLISH!</button>
       </>
@@ -165,7 +156,7 @@ function SongForm() {
       </form>
       <section className='song-modal-deets'>
         {songPreview()}
-        {isLoading && loadingDiv()}
+        {isLoading && <LoadingDiv />}
       </section>
     </div>
   );

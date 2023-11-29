@@ -40,15 +40,18 @@ def post_new_song():
   """
   POST /songs : Create a New Song
   """
-  print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
   form = SongForm()
   
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', form)
+    print('\n\nINSIDE\n\n')
+    if 'genre' in form.data:
+      genre = form.data['genre']
+    else:
+      genre = ''
     song = Song(
       name=form.data['name'],
-      genre=form.data['genre'],
+      genre=genre,
       image_url=form.data['image_url'],
       track_url=form.data['track_url'],
       user_id=current_user.id
@@ -58,38 +61,36 @@ def post_new_song():
     db.session.commit()
   
     return song.to_dict(), 201
+  print('\n\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', form.errors);
   return form.errors, 400
 
 # PATCH /songs/:song_id : Update a Song by ID
-# @song_routes.route('/<int:id>', methods=['PATCH'])
-# @login_required
-# def update_song(id):
-#   """
-#   PATCH /songs/:song_id : Update a Song by ID
-#   """
-#   form = SongForm()
+@song_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def update_song(id):
+  """
+  PATCH /songs/:song_id : Update a Song by ID
+  """
+  form = SongForm()
   
-#   form['csrf_token'].data = request.cookies['csrf_token']
-#   song = Song.query.get(id)
+  req = request.json
   
-#   if not song:
-#     return {'message': 'Song not found'}, 404
-#   elif song.user_id != current_user.id:
-#     return {'message': 'Song not Owned'}, 403
+  song = Song.query.get(id)
   
-#   if form.validate_on_submit():
-#     if form.data['name']:
-#       song.name=form.data['name']
-#     if form.data['genre']:
-#       song.genre=form.data['genre']
-#     if form.data['image_url']:
-#       song.image_url=upload_image(form.data['image_url'])
-#     if form.data['track_url']:
-#       song.track_url=upload_track(form.data['track_url'])
-      
-#     db.session.commit()
-#     return song.to_dict(), 200
-#   return form.errors, 400
+  if not song:
+    return {'message': 'Song not found'}, 404
+  elif song.user_id != current_user.id:
+    return {'message': 'Song not Owned'}, 403
+  
+  if 'name' in req:
+    song.name=req['name']
+  if 'genre' in req:
+    song.genre=req['genre']
+  if 'image_url' in req:
+    song.image_url=req['image_url']
+    
+  db.session.commit()
+  return song.to_dict(), 200
 
 # DELETE /songs/:song_id : Delete a Song by ID
 @song_routes.route('/<int:id>', methods=['DELETE'])

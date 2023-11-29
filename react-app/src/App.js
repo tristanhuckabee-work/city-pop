@@ -7,7 +7,7 @@ import MusicPlayer from "./components/music_player";
 import Main from "./components/main";
 import SongDetailPage from "./components/main_song_details";
 import UserPage from "./components/main_user_details";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import MyFooter from "./components/section_footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,9 +32,9 @@ function App() {
           <Route path="/songs/:id">
             <SongDetailPage />
           </Route>
-
         </Switch>
       )}
+      <MyFooter />
     </>
   );
 }

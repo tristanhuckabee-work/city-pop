@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { get_all_songs } from '../../store/songs';
 import { get_following, get_recommended } from '../../store/follows';
 import { getOtherUser } from '../../store/session';
-// import OpenModalButton from "../00_open_modal_button";
-import SongList from '../section_songs';
-import FollowingAside from './03_Sidebar';
+
+import SongList         from '../section_songs';
+import SideBar          from '../section_aside';
+import Footer           from '../section_footer';
 
 import './homepage.css';
-import Footer from '../section_footer';
 
 function Main() {
   const dispatch = useDispatch();
@@ -26,12 +26,13 @@ function Main() {
     return (
       <>
         <main>
-          <section id='homepage-songs'>
-            <SongList/>
+          <section className='main-left'>
+            <SongList />
           </section>
-          <FollowingAside />
+          <section className='main-right'>
+            <SideBar user={false} follow={true} rFollows={true} rSongs={false} />
+          </section>
         </main>
-        <Footer parent='main-page' />
       </>
     )
   }
@@ -40,7 +41,6 @@ function Main() {
       <main>
         Hello, Stranger
       </main>
-      <Footer parent='splash-page' />
     </>
   );
 }

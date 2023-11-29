@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import OpenModalButton from "../00_open_modal_button";
-import { get_following } from '../../store/follows';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+// import OpenModalButton from "../00_open_modal_button";
+// import { get_following } from '../../store/follows';
 import './usercard.css'
 
 function UserCard({ user, status }) {
   const history = useHistory()
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const defaultImageURL = "https://res.cloudinary.com/dzsgront4/image/upload/v1700369776/default-pp_v5z5rj.png";
   const image = user.image_url || defaultImageURL
@@ -32,7 +32,7 @@ function UserCard({ user, status }) {
       }}
     >
       <span>
-        <img src={image} alt='profile picture' />
+        <img src={image} alt='profile' />
         <h3>{user.username}</h3>
       </span>
       {userOpts()}

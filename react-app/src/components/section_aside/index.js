@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-// import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-// import OpenModalButton from "../OpenModalButton";
+import React from 'react';
+import { useSelector } from 'react-redux';
 import UserCard from '../card_user';
-import './homepage.css';
+import './aside.css';
 
-function FollowingAside() {
+function SideBar({ user, follow, rFollows, rSongs }) {
   const following = useSelector(state => state?.follows?.following);
   const recommended = useSelector(state => state?.follows?.recommended);
 
@@ -17,7 +15,7 @@ function FollowingAside() {
     }
     return comp;
   }
-  const recommendList = () => {
+  const recUsers = () => {
     let comp = [];
     for (let follow in recommended) {
       const curr = recommended[follow];
@@ -25,15 +23,33 @@ function FollowingAside() {
     }
     return comp;
   }
+  const recSongs = () => {
+    let comp = [];
+    return comp;
+  }
 
   return (
-    <aside id='following'>
-      <h2>Following</h2>
-      {followingList()}
-      <h2>Recommended</h2>
-      {recommendList()}
+    <aside>
+      {rSongs && (
+        <>
+          <h2>By {user?.username}</h2>
+          {recSongs()}
+        </>
+      )}
+      {follow && (
+        <>
+          <h2>Following</h2>
+          {followingList()}
+        </>
+      )}
+      {rFollows && (
+        <>
+          <h2>Recommended</h2>
+          {recUsers()}
+        </>
+      )}
     </aside>
   )
 }
 
-export default FollowingAside;
+export default SideBar;

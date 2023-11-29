@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import OpenModalButton from "../00_open_modal_button";
-import { delete_song, get_all_songs, set_current } from '../../store/songs';
+import { delete_song, set_current } from '../../store/songs';
 import './songcard.css'
 
 function SongCard({ song }) {
@@ -17,8 +16,8 @@ function SongCard({ song }) {
   const [trackURL, setTrackURL] = useState(song?.image_url);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
-  const isPlaying = song?.id == songPlaying?.id;
-  const userOpts = song?.user.id == sessionUser?.id;
+  const isPlaying = song?.id === songPlaying?.id;
+  const userOpts = song?.user.id === sessionUser?.id;
 
   const deleteButton = (e) => {
     if (deleteConfirm) {
@@ -65,7 +64,7 @@ function SongCard({ song }) {
   const deleteSong = async (e) => {
     e.stopPropagation();
     
-    const res = await dispatch(delete_song(song?.id));
+    await dispatch(delete_song(song?.id));
   }
   const editSong = e => {
     e.stopPropagation();
@@ -78,7 +77,7 @@ function SongCard({ song }) {
       key={`song-card-${song}`}
       onClick={handleSongClick}
     >
-      <img onError={() => setTrackURL(defaultIMG)} src={trackURL} alt='track image'></img>
+      <img onError={() => setTrackURL(defaultIMG)} src={trackURL} alt='track cover'></img>
       <div className='song-card-info'>
         <h3>{song.name}</h3>
         <p>{song.user.username}</p>

@@ -55,7 +55,20 @@ export const get_user_songs = id => async dispatch => {
   }
   return data;
 }
-export const update_song = song => async dispatch => {}
+export const update_song = song => async dispatch => {
+  const { name, image_url } = song;
+  const res = await fetch(`/api/songs/${song.id}`, {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({name, image_url})
+  })
+  const data = await res.json();
+
+  if (res.ok) {
+    dispatch(editOne(data));
+  }
+  return data;
+}
 export const delete_song = id => async dispatch => {
   const res = await fetch(`/api/songs/${id}`, {
     method: 'DELETE'
@@ -96,7 +109,8 @@ export default function reducer(state = initialState, action) {
         newState.songs[song.id] = song;
       })
     case UPDATE:
-
+      newState.songs[action.payload.id] = action.payload;
+      newState.currentSong = action.payload;
       return newState;
     case DELETE:
       delete newState.songs[action.payload];

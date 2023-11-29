@@ -1,20 +1,24 @@
-#homepage-songs {
-  border: 1px solid var(--border-grey);
-  border-radius: 15px 15px 0 0;
-  width: 75%;
+main {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 10px;
 }
-#following {
+main section, main aside {
+  border-radius: 5px;
+}
+.main-left {
+  border: 1px solid var(--border-grey);
+  border-top-left-radius: 15px;
+  padding: 10px;
+
+}
+.main-right {
   align-items: flex-start;
   border: 1px solid var(--border-grey);
-  border-radius: 0 15px 15px 0;
+  border-top-right-radius: 15px;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  height: fit-content;
   padding: 10px;
-  position: fixed;
-  right: 15%;
-  top:95px;
-  width: 17.25%;
   flex-grow: 1;
 }

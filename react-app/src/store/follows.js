@@ -15,7 +15,6 @@ export const get_following = () => async dispatch => {
   const data = await res.json();
   
   if (res.ok) {
-    console.log('ING', data)
     dispatch(getFollowing(data.follows));
     return data;
   }
@@ -26,7 +25,6 @@ export const get_followers = () => async dispatch => {
   const data = await res.json();
   
   if (res.ok) {
-    console.log(data)
     dispatch(getFollowers(data.follows));
     return data;
   }
@@ -37,7 +35,6 @@ export const get_recommended = () => async dispatch => {
   const data = await res.json();
   
   if (res.ok) {
-    console.log('RECS', data)
     dispatch(getRecommended(data.recs));
     return data;
   }

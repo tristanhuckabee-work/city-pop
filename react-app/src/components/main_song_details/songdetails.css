@@ -1,112 +1,87 @@
 #song-details {
-  align-items: flex-start;
-  display: flex;
-  justify-content: flex-start;
-}
-.sd-left {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
+  border-bottom: 1px solid var(--border-grey);
+  display: grid;
   gap: 10px;
-  width: 75%;
+  grid-template-columns: 20% auto 50px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
-.sd-song {
-  align-items: flex-end;
-  border: 1px solid var(--border-grey);
-  border-radius: 15px 15px 0 0;
-  display: flex;
-  gap: 10px;
-  justify-content: flex-start;
+#song-details img {
   width: 100%;
-  height: fit-content;
-  padding: 10px;
-}
-.sd-song img {
-  width: 30%;
   border-radius: 10px 3px 3px 3px;
 }
-.sds-right {
-  width: 100%;
-  align-items: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.sdsr-bot {
-  width: 100%;
-  min-height: 100px;
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  justify-content: flex-end;
-}
-.sdsr-bot span {
-  align-items: center;
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 0;
-  width: 100%;
-}
-.sd-comments {
-  border: 1px solid var(--border-grey);
-  padding: 10px;
-  width: 100%;
-}
-.sd-comments form {
-  align-items: center;
-  display:flex;
-  justify-content: space-between;
-  width: 100%;
-  padding-bottom: 20px;
-}
-.sd-comments form input {
-  flex-grow: 1;
-  height: 50px;
-  font-size: 1.5em;
-  padding: 0 5px;
-}
-.sd-comments button[type='submit'] {
-  height: 50px;
-  width: 80px;
-}
-.sd-right {
+#sd-right {
   align-items: flex-start;
-  border: 1px solid var(--border-grey);
-  border-radius: 0 15px 15px 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  height: fit-content;
-  padding: 10px;
-  position: fixed;
-  right: 15%;
-  top:95px;
-  width: 17.25%;
-  flex-grow: 1;
+  justify-content: space-between;
 }
 
-.sd-user {
-
-}
-.sd-songs {
-
-}
-
-.date {
-  align-self: flex-end;
-  color: #888;
-  font-weight: bold;
-  justify-self: flex-end;
-  margin-right: 10px;
-}
-span.sd-user-opts {
+/* USER OPTIONS */
+.sd-user-opts {
   align-items: center;
-  border: 2px solid #888888;
+  border: 2px solid #888;
   border-radius: 10px;
+  color: #888;
   display: flex;
+  flex-direction: column;
   gap: 10px;
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 5px;
+  margin-bottom: 10px;
   width: fit-content;
+}
+.sd-user-opts i:hover {
+  color: var(--pink);
+  cursor: pointer;
+}
+.sd-song-delete {
+  align-items: center;
+  border: 1px solid var(--pink);
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.sd-song-delete button {
+  background-color: var(--transparent);
+  border: 1px solid var(--pink);
+  border-radius: 5px;
+  color: var(--pink);
+  padding: 5px 10px;
+  transition: all 0.2s linear;
+  width: 50px;
+}
+.sd-song-delete button:hover {
+  background-color: var(--pink);
+  color: white;
+  cursor: pointer;
+}
+.sd-song-edit {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.sd-song-edit input[type='text']{
+  width: 100%;
+}
+.sd-song-edit button {
+  background-color: var(--transparent);
+  border: 1px solid var(--pink);
+  border-radius: 5px;
+  color: var(--pink);
+  padding: 5px 10px;
+  transition: all 0.2s linear;
+  width: 100%;
+}
+.sd-song-edit button:hover {
+  background-color: var(--pink);
+  color: white;
+  cursor: pointer;
 }
