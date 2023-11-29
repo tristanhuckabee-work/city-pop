@@ -1,9 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import UserCard from '../card_user';
 import './aside.css';
 
 function SideBar({ user, follow, rFollows, rSongs }) {
+  const history = useHistory();
   const following = useSelector(state => state?.follows?.following);
   const recommended = useSelector(state => state?.follows?.recommended);
 
@@ -30,9 +32,16 @@ function SideBar({ user, follow, rFollows, rSongs }) {
 
   return (
     <aside>
-      {rSongs && (
+      {rSongs && user && (
         <>
-          <h2>By {user?.username}</h2>
+          <h2 
+            className='aside-link'
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              history.push(`/users/${user.id}`)
+            }}
+          >By {user?.username}</h2>
           {recSongs()}
         </>
       )}

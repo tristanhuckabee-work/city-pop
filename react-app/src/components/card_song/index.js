@@ -17,7 +17,7 @@ function SongCard({ song }) {
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   const isPlaying = song?.id === songPlaying?.id;
-  const userOpts = song?.user.id === sessionUser?.id;
+  const userOpts = song?.user?.id === sessionUser?.id;
 
   const deleteButton = (e) => {
     if (deleteConfirm) {
@@ -80,7 +80,7 @@ function SongCard({ song }) {
       <img onError={() => setTrackURL(defaultIMG)} src={trackURL} alt='track cover'></img>
       <div className='song-card-info'>
         <h3>{song.name}</h3>
-        <p>{song.user.username}</p>
+        <p>{song.user?.username}</p>
         <span className='sc-bot'>
           <p>#{song.genre}</p>
           <div className='song-actions'>

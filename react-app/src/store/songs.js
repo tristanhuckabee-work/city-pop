@@ -39,7 +39,6 @@ export const get_all_songs = () => async dispatch => {
 export const get_one_song = id => async dispatch => {
   const res = await fetch(`/api/songs/${id}`);
   const data = await res.json();
-
   if (res.ok) {
     dispatch(getOne(data));
     return data;
@@ -51,7 +50,8 @@ export const get_user_songs = id => async dispatch => {
   const data = await res.json();
 
   if (res.ok) {
-    dispatch(getUser(data));
+    console.log('inside getbyuser', data.songs);
+    dispatch(getUser(data.songs));
   }
   return data;
 }
@@ -105,12 +105,12 @@ export default function reducer(state = initialState, action) {
       return newState;
     case READ_USR:
       newState.songs = {};
-      action.payload.songs.forEach(song => {
+      action.payload.forEach(song => {
         newState.songs[song.id] = song;
       })
+      return newState;
     case UPDATE:
       newState.songs[action.payload.id] = action.payload;
-      newState.currentSong = action.payload;
       return newState;
     case DELETE:
       delete newState.songs[action.payload];

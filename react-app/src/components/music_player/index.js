@@ -21,7 +21,7 @@ function MusicPlayer({ song }) {
         <img className='mp-image' src={song?.image_url}></img>
         <div className='mpsi-inner'>
           <p>{song?.name}</p>
-          <p>{song?.user.username}</p>
+          <p>{song?.user?.username}</p>
         </div>
       </div>
       <AudioPlayer 
