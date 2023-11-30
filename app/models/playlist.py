@@ -28,5 +28,13 @@ class Playlist(db.Model):
       'description': self.description,
       'image_url': self.image_url,
       'updated_at': self.updated_at,
-      'user': self.user.to_dict_children()
+      'user': self.user.to_dict_children(),
+    }
+  def simplified_dict(self):
+    return {
+      'id': self.id,
+      'name': self.name,
+      'description': self.description,
+      'image_url': self.image_url,
+      'song_cnt': len([song for song in self.songs])
     }

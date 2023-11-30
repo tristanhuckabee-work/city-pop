@@ -90,7 +90,7 @@ export const getOtherUser = id => async dispatch => {
 
   const res = await fetch(`/api/users/${id}`);
   const data = await res.json();
-
+  console.log(data);
   if (res.ok) {
     dispatch(setOther(data));
   }

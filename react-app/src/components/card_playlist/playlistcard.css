@@ -1,0 +1,22 @@
+.playlist {
+  align-items: center;
+  border:1px solid var(--border-grey);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 5px;
+  width: 10vw;
+}
+.playlist img {
+  border-radius: 3px;
+  object-fit: contain;
+  width: 100%;
+}
+.playlist-inner {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

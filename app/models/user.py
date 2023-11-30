@@ -66,5 +66,5 @@ class User(db.Model, UserMixin):
       'ers_cnt': len([user.follower_to_dict() for user in self.followers]),
       'ing_cnt': len([user.followed_to_dict() for user in self.following]),
       'songs': [song.to_dict() for song in self.songs],
-      'playlists': [playlist.to_dict() for playlist in self.playlists]
+      'playlists': [playlist.simplified_dict() for playlist in self.playlists]
     }
