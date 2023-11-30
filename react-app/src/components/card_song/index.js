@@ -82,7 +82,14 @@ function SongCard({ song }) {
       <img onError={() => setTrackURL(defaultIMG)} src={trackURL} alt='track cover'></img>
       <div className='song-card-info'>
         <h3>{song.name}</h3>
-        <p>{song.user?.username}</p>
+        <p
+          className='user-page-link'
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            history.push(`/users/${song.user.id}`)
+          }}
+        >{song.user?.username}</p>
         <span className='sc-bot'>
           <p>#{song.genre}</p>
           <div className='song-actions'>

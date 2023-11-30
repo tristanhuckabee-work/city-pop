@@ -1,13 +1,22 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import MiniSongCard from './card_song_mini';
 import UserCard from '../card_user';
 import './aside.css';
+import { get_all_songs } from '../../store/songs';
 
 function SideBar({ user, follow, rFollows, rSongs }) {
+  const dispatch = useDispatch();
   const history = useHistory();
   const following = useSelector(state => state?.follows?.following);
   const recommended = useSelector(state => state?.follows?.recommended);
+  const songs = useSelector(state => state?.songs?.songs)
+  const currentSong = useSelector(state => state?.songs?.currentSong);
+
+  useEffect(() => {
+    dispatch(get_all_songs());
+  }, [dispatch]);
 
   const followingList = () => {
     let comp = [];
@@ -27,7 +36,35 @@ function SideBar({ user, follow, rFollows, rSongs }) {
   }
   const recSongs = () => {
     let comp = [];
-    return comp;
+    for (let song in songs) {
+      const curr = songs[song]
+      if (curr.user.id == user.id
+      && curr.id != currentSong.id) {
+        comp.push(
+          <MiniSongCard
+            key={`song-card-${curr.id}`}
+            song={curr}
+          />
+        )
+      }
+    }
+    if (comp.length < 5) {
+      for (let song in songs) {
+        const curr = songs[song]
+        if (curr.user.id != user.id
+        && curr.id != currentSong.id
+        && curr.genre == currentSong.genre) {
+          comp.push(
+            <MiniSongCard
+              key={`song-card-${curr.id}`}
+              song={curr}
+            />
+          )
+        }
+      }
+    }
+    
+    return comp.slice(0,10);
   }
 
   return (
@@ -35,13 +72,12 @@ function SideBar({ user, follow, rFollows, rSongs }) {
       {rSongs && user && (
         <>
           <h2 
-            className='aside-link'
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               history.push(`/users/${user.id}`)
             }}
-          >By {user?.username}</h2>
+          >Like <span className='user-page-link'>{user?.username}</span></h2>
           {recSongs()}
         </>
       )}

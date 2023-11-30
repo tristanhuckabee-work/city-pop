@@ -23,3 +23,7 @@ main {
 .error {
   color: var(--pink);
 }
+.user-page-link {
+  color: var(--pink);
+  cursor: pointer;
+}

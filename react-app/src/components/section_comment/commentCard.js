@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { formatDate } from '../00_compUtils/genUtils';
 import OpenModalButton from "../00_open_modal_button";
 import './commentList.css'
@@ -7,14 +8,14 @@ import CommentDeleteModal from './commentDelete';
 import CommentEditModal from './commentEdit';
 
 function CommentCard({ comment }) {
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   const userOpts = comment?.user?.id == sessionUser?.id;
   const [editForm, setEditForm] = useState(false);
   const [deleteForm, setDeleteForm] = useState(false);
 
-  useEffect(()=> {
-    console.log(comment.id, comment)
-  },[comment])
+  useEffect(()=> {},[comment])
+
   const createContent = () => {
     if (editForm) {
       return (
@@ -47,7 +48,13 @@ function CommentCard({ comment }) {
       <span className='cc-user'>
         <span className='ccul'>
           <img src={comment?.user?.image_url}></img>
-          <h3>{comment?.user?.username}</h3>
+          <h3 className='user-page-link'
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              history.push(`/users/${comment?.user?.id}`)
+            }}
+          >{comment?.user?.username}</h3>
         </span>
         <span className='ccur'>
           {userOpts && (

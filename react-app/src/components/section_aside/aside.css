@@ -5,3 +5,26 @@ aside {
   gap: 5px;
   width: 100%;
 }
+.user-page-link {
+  color: var(--pink);
+  cursor: pointer;
+}
+.mini-song-card {
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  padding: 5px;
+  width: 100%;
+}
+.mini-song-card:hover {
+  background-color: var(--card-bgh);
+  cursor: pointer;
+}
+.mini-song-card img {
+  border-radius: 3px;
+  height: 50px;
+  width: 50px;
+}

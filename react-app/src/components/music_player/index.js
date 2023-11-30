@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import AudioPlayer from 'react-h5-audio-player';
 
 import 'react-h5-audio-player/lib/styles.css';
@@ -7,6 +8,7 @@ import './music_player.css';
 
 
 function MusicPlayer({ song }) {
+  const history = useHistory()
   const currentSong = useSelector(state => state?.songs?.currentSong);
   // const currentList = useSelector(state => state?.playlists?.current);
   const [currTrack, setCurrTrack] = useState('')
@@ -18,11 +20,23 @@ function MusicPlayer({ song }) {
 
   return (
     <section id='music-player'>
-      <div id='mp-song-info'>
+      <div id='mp-song-info'
+        onClick={e => {
+          e.preventDefault();
+          e.stopPropagation();
+          history.push(`/songs/${song?.id}`);
+        }}
+      >
         <img className='mp-image' src={song?.image_url}></img>
         <div className='mpsi-inner'>
           <p>{song?.name}</p>
-          <p>{song?.user?.username}</p>
+          <p className='user-page-link'
+            onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              history.push(`/users/${song?.user?.id}`);
+            }}
+          >{song?.user?.username}</p>
         </div>
       </div>
       <AudioPlayer 
