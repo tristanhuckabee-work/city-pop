@@ -15,8 +15,6 @@ function UserPage() {
   const isFollowed = useSelector(state => state.follows.following[id]);
   
   const thisUser = useSelector(state => state.session.other);
-  const otherFollowers = useSelector(state => state.follows.other?.followers);
-  const otherFollowing = useSelector(state => state.follows.other?.following);
 
   const isCurrentUser = sessionUser?.id == thisUser?.id;
   const [editImageURL, setEditImageURL] = useState(thisUser?.image_url);
@@ -26,7 +24,6 @@ function UserPage() {
 
   useEffect(() => {
     dispatch(getOtherUser(id));
-    dispatch(get_user_songs(id));
   }, [dispatch]);
 
   const followUnfollow = () => {
@@ -65,20 +62,20 @@ function UserPage() {
     <>
       <main id='user-details'>
         <section className='user-details'>
-          <img src={thisUser?.image_url} alt='user profile picture'></img>
+          <img src={thisUser?.user.image_url} alt='user profile picture'></img>
           <span className='user-info'>
-            <h1>{thisUser?.username}</h1>
-            <p>{thisUser?.email}</p>
+            <h1>{thisUser?.user.username}</h1>
+            <p>{thisUser?.user.email}</p>
             <span className='user-follow-details'>
-              <h2 className='follow-info'>{otherFollowers?.length || 'ERR'}</h2>
-              <h2 className='follow-info'>{otherFollowing?.length || 'ERR'}</h2>
+              <h2 className='follow-info'>{thisUser?.ers_cnt}</h2>
+              <h2 className='follow-info'>{thisUser?.ing_cnt}</h2>
               {followUnfollow()}
               <p>Followers</p>
               <p>Following</p>
               <p>{rButtonText()}</p>
             </span>
           </span>
-          <p><strong>Description: </strong>{thisUser?.description || 'No Description Available :('}</p>
+          <p><strong>Description: </strong>{thisUser?.user.description || 'No Description Available :('}</p>
         </section>
         {showEdit && (
           <section className='ud-edit-user'>
@@ -123,7 +120,7 @@ function UserPage() {
         </section>
         <section className='ud-songs'>
           <h2>Uploaded Songs</h2>
-          <SongList />
+          <SongList songs={thisUser?.songs}/>
         </section>
       </main>
       <MyFooter parent='user-page' />

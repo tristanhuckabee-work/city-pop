@@ -4,8 +4,9 @@ import SongCard        from '../card_song';
 
 import './songList.css';
 
-function SongList() {
-  const songs = useSelector(state => state?.songs.songs);
+function SongList({songs}) {
+  const stateSongs = useSelector(state => state?.songs.songs);
+  if (!songs) songs = stateSongs;
 
   const formatSongs = () => {
     let comp = [];

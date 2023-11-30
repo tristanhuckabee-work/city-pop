@@ -44,14 +44,16 @@ export const get_recommended = () => async dispatch => {
 let initialState = {
   following:   {},
   followers:   {},
-  recommended: {}
+  recommended: {},
+  ratio: [0, 0]
 }
 
 export default function reducer(state = initialState, action) {
 	let newState = {
     following: {...state.following},
     followers: {...state.followers},
-    recommended: {...state.recommended}
+    recommended: {...state.recommended},
+    ratio: [...state.ratio]
   };
   
   switch (action.type) {
@@ -62,11 +64,13 @@ export default function reducer(state = initialState, action) {
       action.payload.forEach(follow => {
         newState.following[follow.id] = follow;
       });
+      newState.ratio[0] = action.payload.length;
       return newState;
     case READ_ERS:
       action.payload.forEach(follow => {
         newState.followers[follow.id] = follow;
       });
+      newState.ratio[1] = action.payload.length;
       return newState;
     case READ_REC:
       action.payload.forEach(follow => {

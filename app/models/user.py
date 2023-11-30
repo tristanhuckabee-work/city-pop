@@ -56,6 +56,15 @@ class User(db.Model, UserMixin):
   def to_dict_recs(self):
     return {
       'user': self.to_dict_children(),
-      'followers': [user.follower_to_dict() for user in self.following],
+      'followers': [user.follower_to_dict() for user in self.followers],
       'following': [user.followed_to_dict() for user in self.following]
+    }
+  # for userPage
+  def to_dict_page(self):
+    return {
+      'user': self.to_dict(),
+      'ers_cnt': len([user.follower_to_dict() for user in self.followers]),
+      'ing_cnt': len([user.followed_to_dict() for user in self.following]),
+      'songs': [song.to_dict() for song in self.songs],
+      'playlists': [playlist.to_dict() for playlist in self.playlists]
     }
