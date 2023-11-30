@@ -17,7 +17,8 @@ function UserPage() {
 
   const thisUser = useSelector(state => state.session.other);
 
-  const isCurrentUser = sessionUser?.id == thisUser?.id;
+  const isCurrentUser = sessionUser?.id == thisUser?.user.id;
+  console.log(thisUser);
   const [editImageURL, setEditImageURL] = useState(thisUser?.image_url);
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState(thisUser?.description || '');
@@ -31,8 +32,7 @@ function UserPage() {
     if (!isCurrentUser) {
       if (isFollowed) {
         return (
-          <i className='fas fa-user-minus fa-2x follow-info'
-          ></i>
+          <i className='fas fa-user-minus fa-2x follow-info'></i>
         )
       }
       return (
@@ -116,12 +116,30 @@ function UserPage() {
         </section>
       )}
       <section className='ud-playlists'>
-        <h2>Playlists</h2>
-        <PlaylistList playlists={thisUser?.playlists} />
+        {thisUser?.playlists.length ? (
+          <>
+            <h2>Playlists</h2>
+            <PlaylistList playlists={thisUser?.playlists} />
+          </>
+        ) : (
+          <>
+            <h2>Playlists</h2>
+            <p className='empty-section'>Nothing to see here...</p>
+          </>
+        )}
       </section>
       <section className='ud-songs'>
-        <h2>Uploaded Songs</h2>
-        <SongList songs={thisUser?.songs} />
+        {thisUser?.songs.length ? (
+          <>
+            <h2>Uploaded Songs</h2>
+            <SongList songs={thisUser?.songs} />
+          </>
+        ) : (
+          <>
+            <h2>Uploaded Songs</h2>
+            <p className='empty-section'>Nothing to see here...</p>
+          </>
+        )}
       </section>
     </main>
   )

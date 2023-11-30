@@ -8,6 +8,7 @@ import Main from "./components/main";
 import SongDetailPage from "./components/main_song_details";
 import UserPage from "./components/main_user_details";
 import MyFooter from "./components/section_footer";
+import PlaylistPage from "./components/main_playlist_details";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/songs/:id">
             <SongDetailPage />
+          </Route>
+          <Route path="/playlists/:id">
+            <PlaylistPage />
           </Route>
         </Switch>
       )}

@@ -1,0 +1,34 @@
+#playlist-details {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+}
+#playlist-details > section{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+}
+.playlist-details {
+  align-items: flex-start;
+  border: 1px solid var(--border-grey);
+  border-radius: 15px 5px 5px 5px;
+  display:flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: flex-start;
+  padding: 10px;
+}
+.playlist-songs {
+  align-items: flex-start;
+  border: 1px solid var(--border-grey);
+  border-radius: 5px 15px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+  padding: 10px;
+}
