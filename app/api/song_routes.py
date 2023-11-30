@@ -74,7 +74,6 @@ def update_song(id):
   form = SongForm()
   
   req = request.json
-  
   song = Song.query.get(id)
   
   if not song:
@@ -82,6 +81,7 @@ def update_song(id):
   elif song.user_id != current_user.id:
     return {'message': 'Song not Owned'}, 403
   
+  print(f'\n\n{req}\n\n')
   if 'name' in req:
     song.name=req['name']
   if 'genre' in req:

@@ -23,6 +23,7 @@ function SongList() {
 
   return (
     <section id='songs-container'>
+      <h2>Click to Play</h2>
       {formatSongs()}
     </section>
   )

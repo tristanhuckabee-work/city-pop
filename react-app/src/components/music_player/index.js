@@ -8,6 +8,7 @@ import './music_player.css';
 
 function MusicPlayer({ song }) {
   const currentSong = useSelector(state => state?.songs?.currentSong);
+  // const currentList = useSelector(state => state?.playlists?.current);
   const [currTrack, setCurrTrack] = useState('')
 
 
@@ -30,6 +31,7 @@ function MusicPlayer({ song }) {
         layout='horizontal'
         src={song?.track_url}
       />
+      <button id='play-next-song'>NEXT</button>
     </section>
   )
 }

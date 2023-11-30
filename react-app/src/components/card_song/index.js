@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { delete_song, set_current } from '../../store/songs';
+import OpenModalButton from "../00_open_modal_button";
+import EditSongForm from "../form_song_edit";
 import './songcard.css'
 
 function SongCard({ song }) {
@@ -15,6 +17,7 @@ function SongCard({ song }) {
 
   const [trackURL, setTrackURL] = useState(song?.image_url);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [showEdit, setShowEdit] = useState(true);
 
   const isPlaying = song?.id === songPlaying?.id;
   const userOpts = song?.user?.id === sessionUser?.id;
@@ -34,13 +37,12 @@ function SongCard({ song }) {
       )
     }
     return (
-      <i
-        className='fa-solid fa-delete-left'
+      <button
         onClick={(e) => {
           e.stopPropagation();
           setDeleteConfirm(true);
         }}
-      ></i>
+      >DELETE</button>
     )
   }
   const likeSong = (e) => {
@@ -90,12 +92,21 @@ function SongCard({ song }) {
             ></i>
             {isLiked}
             {userOpts && (
-              <span className='sc-user-actions'>
+              <span className='sc-user-actions'
+                onClick={e => {
+                  e.stopPropagation();
+                  e.preventDefault()
+                }}
+              >
                 {deleteButton()}
-                <i
-                  className='fas fa-pen-to-square'
-                  onClick={e => editSong(e)}
-                ></i>
+                <OpenModalButton
+                  buttonText='EDIT'
+                  modalComponent={(
+                    <div id='esm-container'>
+                      <EditSongForm currentSong={song} />
+                    </div>
+                  )}
+                />
               </span>
             )}
           </div>

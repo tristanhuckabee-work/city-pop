@@ -1,12 +1,15 @@
 .song-card {
   align-items: flex-start;
-  background-color: ;
+  background-color: var(--card-bg);
   border-radius: 10px;
   display: flex;
   gap: 10px;
   justify-content: flex-start;
   padding: 10px;
   width: 100%;
+}
+.song-card:hover {
+  background-color: var(--card-bgh);
 }
 .song-card img {
   background-color: #888888;
@@ -49,6 +52,18 @@
   border-radius: 5px;
   padding: 5px;
 }
+.sc-user-actions button {
+  background-color: var(--transparent);
+  border: 1px solid #888;
+  border-radius: 3px;
+  color: #888;
+  padding: 5px 10px;
+}
+.sc-user-actions button:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  cursor: pointer;
+}
 .song-card-info span.sc-bot {
   align-items: center;
   display: flex;
@@ -62,6 +77,9 @@ i.fa-heart {
 
 .sc-highlite {
   background-color: #ffe8ec;
+}
+.sc-highlite:hover {
+  background-color: #ffdce2;
 }
 .sc-user-actions span.delConf p {
   background-color: var(--transparent);

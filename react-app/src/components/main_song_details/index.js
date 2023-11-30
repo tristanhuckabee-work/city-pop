@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { delete_song, update_song, get_one_song } from '../../store/songs';
+import { delete_song, get_one_song } from '../../store/songs';
 import SideBar from '../section_aside';
 import CommentList from '../section_comment';
 import CommentForm from '../form_comment';
 import './songdetails.css'
-import LoadingDiv from '../00_loading';
+import EditSongForm from '../form_song_edit';
 
 function SongDetails() {
   const id = +window.location.href.split('/')[4];
@@ -20,10 +20,6 @@ function SongDetails() {
   const [currentSong, setCurrentSong] = useState(null);
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [imageURL, setImageURL] = useState(null);
-  const [imageFile, setImageFile] = useState(null);
-  const [name, setName] = useState(currentSong?.name);
-  const [isLoading, setIsLoading] = useState(false)
 
   const userOpts = currentSong?.user.id == sessionUser?.id;
   const userSongs = [];
@@ -31,51 +27,13 @@ function SongDetails() {
     const song = songs[key];
     userSongs.push(song);
   }
-
   useEffect(() => {
     dispatch(get_one_song(id))
-      .then(res => {
-        setCurrentSong(res);
-        setName(res.name);
-      });
+    .then(res => {
+      setCurrentSong(res);
+    });
   }, [dispatch, current]);
-
-  const makeEditForm = () => {
-    if (isLoading) {
-      return <LoadingDiv />
-    }
-    return (
-      <form onSubmit={e => handleEdit(e)} className='sd-song-edit'>
-        <h3>Edit Your Song</h3>
-        <p>Enter a URL or upload an Image File</p>
-        <input
-          type='text'
-          className='url'
-          value={imageURL}
-          onChange={e => setImageURL(e.target.value)}
-          placeholder='Enter a URL'
-        ></input>
-        <input
-          type='file'
-          className='up-load'
-          onChange={e => setImageFile(e.target.files[0])}
-        ></input>
-        <input
-          placeholder='Song Title'
-          required
-          type='text'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        ></input>
-        <button onClick={e => handleEdit(e)}>Yes</button>
-        <button onClick={(e) => {
-          e.stopPropagation();
-          setShowEdit(false)
-        }}
-        >Cancel</button>
-      </form>
-    )
-  }
+  
   const likeSong = () => {
     console.log('like/unlike song');
   }
@@ -85,32 +43,6 @@ function SongDetails() {
 
     await dispatch(delete_song(id));
     history.push('/');
-  }
-  const handleEdit = async e => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    setIsLoading(true);
-    if (imageFile) {
-      const cloudinaryURL = 'https://api.cloudinary.com/v1_1/dzsgront4/auto/upload';
-      const cloudinaryImage = new FormData();
-      cloudinaryImage.append('file', imageFile);
-      cloudinaryImage.append('upload_preset', 'city_pop_songs');
-      const imageRes = await fetch(cloudinaryURL, { method: 'POST', body: cloudinaryImage })
-      let image = await imageRes.json();
-      image = image.secure_url;
-
-      setImageURL(image);
-    }
-    const newSong = {
-      id, name,
-      image_url: imageURL ? imageURL : currentSong.image_url,
-    }
-
-    const res = await dispatch(update_song(newSong));
-
-    setIsLoading(false);
-    setShowEdit(false);
   }
   return (
     <>
@@ -156,7 +88,7 @@ function SongDetails() {
               >No</button>
             </div>
           )}
-          {showEdit && makeEditForm()}
+          {showEdit && <EditSongForm func={setShowEdit} currentSong={currentSong} />}
           <CommentForm song_id={id} />
           <CommentList song_id={id} />
         </section>
