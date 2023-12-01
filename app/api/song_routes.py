@@ -25,7 +25,7 @@ def get_all_songs():
 @song_routes.route('/<int:id>', methods=['GET'])
 def get_song(id):
   """
-  # GET /api/songs/:song_id : Get Song Details by ID
+  GET /api/songs/:song_id : Get Song Details by ID
   """
   song = Song.query.get(int(id))
   if (song):

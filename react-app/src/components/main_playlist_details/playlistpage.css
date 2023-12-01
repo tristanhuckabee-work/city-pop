@@ -23,7 +23,6 @@
   padding: 10px;
 }
 .playlist-songs {
-  align-items: flex-start;
   border: 1px solid var(--border-grey);
   border-radius: 5px 15px 5px 5px;
   display: flex;
