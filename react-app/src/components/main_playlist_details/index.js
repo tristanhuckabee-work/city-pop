@@ -29,7 +29,7 @@ function PlaylistPage() {
           <p>{playlist.description}</p>
         </div>
         <div className='playlist-songs'>
-          <SongList />
+          <SongList songs={playlist.songs}/>
           {/* <SongList songs={playlist.songs}/> */}
         </div>
       </section>

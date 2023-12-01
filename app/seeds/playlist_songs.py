@@ -3,21 +3,25 @@ from sqlalchemy.sql import text
 
 
 def seed_playlist_songs():
-  playlist1 = Playlist.query.get(1)
-  playlist2 = Playlist.query.get(2)
-  song1 = Song.query.get(2)
-  song2 = Song.query.get(3)
-  song3 = Song.query.get(4)
-  song4 = Song.query.get(5)
-  song5 = Song.query.get(6)
-  
-  playlist1.songs.append(song1)
-  playlist1.songs.append(song2)
-  playlist2.songs.append(song3)
-  playlist2.songs.append(song4)
-  playlist2.songs.append(song5)
+  try:
+    playlist1 = Playlist.query.get(1)
+    playlist2 = Playlist.query.get(2)
+    song1 = Song.query.get(2)
+    song2 = Song.query.get(3)
+    song3 = Song.query.get(4)
+    song4 = Song.query.get(5)
+    song5 = Song.query.get(6)
+    
+    playlist1.songs.append(song1)
+    playlist1.songs.append(song2)
+    playlist2.songs.append(song3)
+    playlist2.songs.append(song4)
+    playlist2.songs.append(song5)
 
-  db.session.commit()
+    db.session.commit()
+  except Exception as e:
+    print(f'\n\nError: {e}\n\n')
+    db.session.rollback()
 
 
 def undo_playlist_songs():
