@@ -6,7 +6,7 @@ def seed_users():
   demo = User(username='yung-demo', email='demo@user.io', password='password', image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1701235494/pexels-jacek-jan-skorupski_ljira3.jpg")
   user2 = User(username='city-pop-phantom', email='marnie@user.io', password='password', image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1700889029/marnie_z9wlbg.png")
   user3 = User(username='bigBobby32', email='robertwilliams@user.io', password='password', image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1701235496/pexels-vadim-birsan_ahyinz.jpg")
-  tomokoaran = User(username='Tomoko Aran', email='tomoko.aran@example.io', password='password')
+  tomokoaran = User(username='Tomoko Aran', email='tomoko.aran@example.io', password='password', image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1701417169/no_pp_teffge.png")
   maxcoveri = User(username='Max Coveri', email='max.coveri@user.io', password='password', image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1701235495/pexels-stacey-koenitz-r_ovrq4z.jpg")
   stebbins = User(username='Jessa Stebbins', email='travis.stebbins@user.io', password='password', image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1700889212/jessastebbins_kmrhz9.jpg")
   backon = User(username='BACK-ON', email='backon@user.io', password='password', image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1701069090/back-on_vn62zx.png")

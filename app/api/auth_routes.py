@@ -65,7 +65,8 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            image_url="https://res.cloudinary.com/dzsgront4/image/upload/v1701417169/no_pp_teffge.png"
         )
         db.session.add(user)
         db.session.commit()
