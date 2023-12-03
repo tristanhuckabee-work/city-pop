@@ -49,6 +49,7 @@ function ProfileButton({ user }) {
                 e.preventDefault();
                 e.stopPropagation();
                 history.push(`/users/${user.id}`);
+                closeMenu();
               }}>@{user.username}</p>
             </div>
             <button onClick={handleLogout}>Log Out</button>

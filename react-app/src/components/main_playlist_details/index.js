@@ -25,7 +25,17 @@ function PlaylistPage() {
       <section>
         <div className='playlist-details'>
           <img src={playlist.image_url}></img>
-          <h2>{playlist.name}</h2>
+          <h2>{playlist.name} by <span
+              className='user-page-link'
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                history.push(`/users/${playlist?.user?.id}`)
+              }}
+            >
+              {playlist?.user?.username}
+            </span>
+          </h2>
           <p>{playlist.description}</p>
         </div>
         <div className='playlist-songs'>

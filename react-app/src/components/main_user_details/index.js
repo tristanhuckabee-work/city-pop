@@ -5,8 +5,8 @@ import { getOtherUser } from '../../store/session';
 import { get_user_songs } from '../../store/songs';
 import OpenModalButton from "../00_open_modal_button";
 import PlaylistList from '../section_playlists';
-import SongList from '../section_songs';
-import MyFooter from '../section_footer';
+import PlaylistForm from '../form_playlist';
+import SongList     from '../section_songs';
 import './userpage.css'
 
 function UserPage() {
@@ -40,7 +40,7 @@ function UserPage() {
       )
     }
     return (
-      <i class="fa-solid fa-pen-to-square fa-2x follow-info"
+      <i className="fa-solid fa-pen-to-square fa-2x follow-info"
         onClick={() => setShowEdit(!showEdit)}
       ></i>
     )
@@ -116,29 +116,26 @@ function UserPage() {
         </section>
       )}
       <section className='ud-playlists'>
+        <h2>Playlists
+          {isCurrentUser && (
+            <OpenModalButton
+              buttonText="+ New Playlist"
+              modalComponent={<PlaylistForm />}
+            />
+          )}
+        </h2>
         {thisUser?.playlists.length ? (
-          <>
-            <h2>Playlists</h2>
-            <PlaylistList playlists={thisUser?.playlists} />
-          </>
+          <PlaylistList playlists={thisUser?.playlists} />
         ) : (
-          <>
-            <h2>Playlists</h2>
-            <p className='empty-section'>Nothing to see here...</p>
-          </>
+          <p className='empty-section'>Nothing to see here...</p>
         )}
       </section>
       <section className='ud-songs'>
+        <h2>Uploaded Songs</h2>
         {thisUser?.songs.length ? (
-          <>
-            <h2>Uploaded Songs</h2>
-            <SongList songs={thisUser?.songs} />
-          </>
+          <SongList songs={thisUser?.songs} />
         ) : (
-          <>
-            <h2>Uploaded Songs</h2>
-            <p className='empty-section'>Nothing to see here...</p>
-          </>
+          <p className='empty-section'>Nothing to see here...</p>
         )}
       </section>
     </main>

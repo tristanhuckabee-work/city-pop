@@ -101,6 +101,27 @@ input[type='text'] {
   padding: 10px;
   width: 100%;
 }
+.ud-playlists h2 {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.ud-playlists h2 button {
+  align-items: center;
+  background-color: var(--transparent);
+  border: 1px solid var(--pink);
+  border-radius: 5px;
+  color: var(--pink);
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  transition: all 0.2s linear;
+}
+.ud-playlists h2 button:hover {
+  background-color: var(--pink);
+  color: white;
+  cursor: pointer;
+}
 
 .ud-songs {
   border: 1px solid var(--border-grey);
