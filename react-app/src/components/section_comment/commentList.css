@@ -49,6 +49,35 @@
   padding: 5px 0;
   padding: 10px;
 }
+.ccc-edit {
+  background-color: white;
+  border: 1px solid var(--border-grey);
+  border-radius: 3px;
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+}
+.ccc-edit .cancel {
+  color: black;
+}
+.ccc-edit .submit {
+  background-color: var(--card-bg);
+  border-width: 0;
+  border-right: 1px solid var(--border-grey);
+  color: black;
+  height: 50px;
+  transition: all 0.2s linear;
+  width: 100px;
+}
+.ccc-edit .submit:hover {
+  background-color: var(--pink);
+  border-left: 1px solid var(--border-grey);
+  border-width: 0;
+  color: white;
+  cursor: pointer;
+  height: 50px;
+  width: 100px;
+}
 .cc-date {
   text-align: right;
   color: #888;

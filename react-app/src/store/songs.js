@@ -54,7 +54,7 @@ export const get_user_songs = id => async dispatch => {
 }
 export const update_song = song => async dispatch => {
   const { name, image_url, genre } = song;
-  console.log('inside thunk', genre);
+  
   const res = await fetch(`/api/songs/${song.id}`, {
     method: 'PATCH',
     headers: {'Content-Type':'application/json'},

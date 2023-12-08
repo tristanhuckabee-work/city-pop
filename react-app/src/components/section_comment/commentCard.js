@@ -1,25 +1,67 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { formatDate } from '../00_compUtils/genUtils';
-import OpenModalButton from "../00_open_modal_button";
-import './commentList.css'
+import { edit_comment }   from '../../store/comments';
+import { formatDate }     from '../00_compUtils/genUtils';
+import OpenModalButton    from "../00_open_modal_button";
 import CommentDeleteModal from './commentDelete';
-import CommentEditModal from './commentEdit';
+import './commentList.css'
 
 function CommentCard({ comment }) {
+  const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   const userOpts = comment?.user?.id == sessionUser?.id;
   const [editForm, setEditForm] = useState(false);
   const [deleteForm, setDeleteForm] = useState(false);
+  const [cContent, setCContent] = useState(comment?.content);
+  const [errors, setErrors] = useState(null);
 
   useEffect(()=> {},[comment])
+
+  const handleEdit = async e => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (cContent === '') {
+      setErrors('This field is required');
+      return;
+    }
+    
+    let payload = { content: cContent };
+    await dispatch(edit_comment(payload, comment.id));
+
+    setEditForm(false);
+  }
 
   const createContent = () => {
     if (editForm) {
       return (
-        <CommentEditModal func={setEditForm} comment={comment} />
+        <>
+          <p className='errors'>{errors}</p>
+          <form className='ccc-edit'>
+            <input
+              type='text'
+              value={cContent}
+              onChange={e => {
+                console.log(e.target.value)
+                setCContent(e.target.value)
+              }}
+              placeholder='Comment Content Here'
+            ></input>
+
+            <button className='submit'
+              onClick={e => handleEdit(e)}
+            >Update</button>
+            <button className='cancel'
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                setEditForm(false);
+              }}
+            >Cancel</button>
+          </form>
+        </>
       )
     }
     if (deleteForm) {

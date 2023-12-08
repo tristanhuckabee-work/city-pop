@@ -70,9 +70,7 @@ def post_new_song():
 def update_song(id):
   """
   PATCH /songs/:song_id : Update a Song by ID
-  """
-  form = SongForm()
-  
+  """  
   req = request.json
   song = Song.query.get(id)
   
@@ -81,7 +79,6 @@ def update_song(id):
   elif song.user_id != current_user.id:
     return {'message': 'Song not Owned'}, 403
   
-  print(f'\n\n{req}\n\n')
   if 'name' in req:
     song.name=req['name']
   if 'genre' in req:

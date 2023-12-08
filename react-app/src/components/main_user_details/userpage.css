@@ -87,6 +87,18 @@
   padding: 5px;
   transition: all 0.3s linear;
 }
+.editForm-buttons button.sub-edit[disabled] {
+  background-color: white;
+  border: 2px solid var(--border-grey);
+  border-radius: 5px;
+  color: var(--border-grey);
+  font-weight: bold;
+  height: 25px;
+  transition: 0.2s linear all;
+}
+.editForm-buttons button.sub-edit[disabled] {
+  cursor: not-allowed;
+}
 .editForm-buttons button:hover{
   background-color: var(--pink);
   color : white;

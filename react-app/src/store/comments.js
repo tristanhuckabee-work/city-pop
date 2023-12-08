@@ -30,6 +30,17 @@ export const get_for_current = id => async dispatch => {
   }
   return data;
 }
+export const edit_comment = (content, id) => async dispatch => {
+  const res = await fetch(`/api/comments/${id}/edit`, {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(content)
+  });
+  const data = await res.json();
+
+  if (res.ok) dispatch(editOne(data));
+  return data;
+}
 export const delete_comment = id => async dispatch => {
   const res = await fetch(`/api/comments/${id}`, {
     method: 'DELETE'
@@ -58,7 +69,7 @@ export default function reducer(state = initialState, action) {
       });
       return newState;
     case UPDATE:
-
+      newState[action.payload.id] = action.payload;
       return newState;
     case DELETE:
       delete newState[action.payload];
