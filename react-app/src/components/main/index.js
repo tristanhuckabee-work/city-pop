@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_all_songs } from '../../store/songs';
 import { get_following, get_recommended } from '../../store/follows';
+import { get_my_likes } from '../../store/likes';
 import { getOtherUser } from '../../store/session';
 
 import SongList         from '../section_songs';
@@ -17,6 +18,7 @@ function Main() {
   useEffect(() => {
     dispatch(get_all_songs());
     dispatch(get_following());
+    dispatch(get_my_likes());
     dispatch(get_recommended());
     dispatch(getOtherUser(null));
   }, [dispatch])

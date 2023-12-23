@@ -35,15 +35,15 @@ function UserPage() {
     if (!isCurrentUser) {
       if (isFollowed) {
         return (
-          <i className='fas fa-user-plus fa-2x follow-info'></i>
+          <i className='fas fa-user-plus fa-2x follow-info follow-action'></i>
         )
       }
       return (
-        <i className='fas fa-user-minus fa-2x follow-info'></i>
+        <i className='fas fa-user-minus fa-2x follow-info follow-action'></i>
       )
     }
     return (
-      <i className="fa-solid fa-pen-to-square fa-2x follow-info"
+      <i className="fa-solid fa-pen-to-square fa-2x follow-info follow-action"
         onClick={e => {
           e.preventDefault();
           e.stopPropagation();

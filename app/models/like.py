@@ -22,6 +22,6 @@ class Like(db.Model):
     return {
       'id': self.id,
       'isLiked': self.isLiked,
-      'updated_at': self.updated_at,
-      'user': self.user.to_dict_children()
+      'song_id': self.song_id,
+      'user_id': self.user_id
     }

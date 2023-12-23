@@ -12,7 +12,7 @@ from .api.user_routes import user_routes
 from .api.song_routes import song_routes
 from .api.playlist_routes import playlist_routes
 from .api.comment_routes import comment_routes
-# from .api.like_routes import like_routes
+from .api.like_routes import like_routes
 from .api.follow_routes import follow_routes
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
@@ -34,7 +34,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(song_routes, url_prefix='/api/songs')
 app.register_blueprint(playlist_routes, url_prefix='/api/playlists')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
-# app.register_blueprint(like_routes, url_prefix='/api/likes')
+app.register_blueprint(like_routes, url_prefix='/api/likes')
 app.register_blueprint(follow_routes, url_prefix='/api/follows')
 
 db.init_app(app)

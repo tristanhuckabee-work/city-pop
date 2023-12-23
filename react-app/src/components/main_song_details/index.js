@@ -7,6 +7,7 @@ import CommentList from '../section_comment';
 import CommentForm from '../form_comment';
 import './songdetails.css'
 import EditSongForm from '../form_song_edit';
+import { create_like, get_my_likes, update_like } from '../../store/likes';
 
 function SongDetails() {
   const id = +window.location.href.split('/')[4];
@@ -16,6 +17,10 @@ function SongDetails() {
   const songs = useSelector(state => state.songs.songs);
   const current = useSelector(state => state.songs.songs[id]);
   const likes = useSelector(state => state.likes);
+
+  useEffect(() => {
+    dispatch(get_my_likes());
+  }, [dispatch])
 
   const [currentSong, setCurrentSong] = useState(null);
   const [showDelete, setShowDelete] = useState(false);
@@ -34,10 +39,22 @@ function SongDetails() {
     });
   }, [dispatch, current]);
   
-  const likeSong = () => {
-    console.log('like/unlike song');
+  const likeSong = async (e) => {
+    e.preventDefault()
+    e.stopPropagation();
+
+    if (id in likes) {
+      const { isLiked, ...payload } = likes[id];
+      await dispatch(update_like(payload));
+    } else {
+      const payload = {
+        user_id: sessionUser.id,
+        song_id: id
+      }
+      await dispatch(create_like(payload));
+    }
   }
-  const isLiked = likes?.[currentSong.id] ? <i className='fas fa-heart fa-2x' onClick={likeSong}></i> : <i className='far fa-heart fa-2x' onClick={likeSong}></i>
+  const isLiked = id in likes && likes[id].isLiked ? <i className='fas fa-heart fa-2x' onClick={likeSong}></i> : <i className='far fa-heart fa-2x' onClick={likeSong}></i>
   const handleDelete = async e => {
     e.stopPropagation();
 

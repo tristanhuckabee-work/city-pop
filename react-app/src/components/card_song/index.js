@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { delete_song, set_current } from '../../store/songs';
+import { create_like, get_my_likes, update_like } from '../../store/likes';
 import OpenModalButton from "../00_open_modal_button";
 import EditSongForm from "../form_song_edit";
 import './songcard.css'
@@ -45,11 +46,22 @@ function SongCard({ song }) {
       >DELETE</button>
     )
   }
-  const likeSong = (e) => {
+  const likeSong = async (e) => {
+    e.preventDefault()
     e.stopPropagation();
-    console.log('like/unlike song');
+
+    if (song?.id in likes) {
+      const { isLiked, ...payload } = likes[song.id];
+      await dispatch(update_like(payload));
+    } else {
+      const payload = {
+        user_id: sessionUser.id,
+        song_id: song.id
+      }
+      await dispatch(create_like(payload));
+    }
   }
-  const isLiked = likes?.[song?.id] ? <i className='fas fa-heart' onClick={e => likeSong(e)}></i> : <i className='far fa-heart' onClick={e => likeSong(e)}></i>
+  const isLiked = likes?.[song?.id] && likes[song?.id].isLiked ? <i className='fas fa-heart' onClick={e => likeSong(e)}></i> : <i className='far fa-heart' onClick={e => likeSong(e)}></i>
   const handleSongClick = () => {
     dispatch(set_current(song));
     if (sessionUser) {
@@ -65,7 +77,7 @@ function SongCard({ song }) {
   }
   const deleteSong = async (e) => {
     e.stopPropagation();
-    
+
     await dispatch(delete_song(song?.id));
   }
   const editSong = e => {

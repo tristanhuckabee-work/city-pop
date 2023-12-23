@@ -62,3 +62,8 @@
   color: white;
   cursor: pointer;
 }
+
+.follow-action:hover {
+  color: var(--pink);
+  cursor: pointer;
+}
