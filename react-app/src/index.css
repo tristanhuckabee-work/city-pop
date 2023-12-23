@@ -3,6 +3,7 @@
   --card-bg: #f9f9f9;
   --card-bgh: #e9e9e9;
   --pink: #fc466b;
+  --pink-trans: #fc46b0;
   --transparent: #00000000;
 }
 
@@ -25,5 +26,9 @@ main {
 }
 .user-page-link {
   color: var(--pink);
+  cursor: pointer;
+}
+.fa-heart:hover {
+  color: black;
   cursor: pointer;
 }
