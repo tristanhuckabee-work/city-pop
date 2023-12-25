@@ -99,3 +99,7 @@ i.fa-heart {
   color: white;
   cursor: pointer;
 }
+.fa-square-plus:hover {
+  color: black;
+  cursor: pointer;
+}

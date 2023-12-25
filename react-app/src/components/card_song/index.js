@@ -107,7 +107,10 @@ function SongCard({ song }) {
           <div className='song-actions'>
             <i
               className='fas fa-square-plus'
-              onClick={e => addToPlaylist(e)}
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                alert('Not Yet Implemented')}}
             ></i>
             {isLiked}
             {userOpts && (

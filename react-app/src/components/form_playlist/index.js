@@ -15,7 +15,7 @@ function PlaylistForm({ song }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('handled');
+    alert('Not Yet Implemented');
   }
 
   return (

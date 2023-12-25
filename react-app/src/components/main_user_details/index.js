@@ -14,18 +14,15 @@ function UserPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const isFollowed = useSelector(state => state.follows.following[id]);
-  console.log(isFollowed);
-
   const thisUser = useSelector(state => state.session.other);
+  // console.log(isFollowed);
 
   const isCurrentUser = sessionUser?.id == thisUser?.user.id;
-  // console.log(thisUser);
   const [editImageURL, setEditImageURL] = useState(thisUser?.user?.image_url);
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState(thisUser?.user?.description || '');
   const [showEdit, setShowEdit] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  console.log(isDisabled);
 
   useEffect(() => {
     dispatch(getOtherUser(id));
@@ -136,7 +133,7 @@ function UserPage() {
         </section>
       )}
       <section className='ud-playlists'>
-        <h2>Playlists
+        <h2>Playlists - Work in Progress
           {isCurrentUser && (
             <OpenModalButton
               buttonText="+ New Playlist"
