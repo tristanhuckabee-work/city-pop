@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { getOtherUser } from '../../store/session';
+import { getOtherUser, updateUser } from '../../store/session';
 import { get_user_songs } from '../../store/songs';
 import OpenModalButton from "../00_open_modal_button";
 import PlaylistList from '../section_playlists';
 import PlaylistForm from '../form_playlist';
 import SongList     from '../section_songs';
+import LoadingDiv from '../00_loading';
 import './userpage.css'
 
 function UserPage() {
@@ -23,6 +24,7 @@ function UserPage() {
   const [description, setDescription] = useState(thisUser?.user?.description || '');
   const [showEdit, setShowEdit] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     dispatch(getOtherUser(id));
@@ -56,11 +58,27 @@ function UserPage() {
     }
     return 'Edit'
   }
-  const handleEditUser = (e) => {
+  const handleEditUser = async e => {
     e.preventDefault();
     e.stopPropagation();
 
-    console.log(thisUser)
+    setIsLoading(true);
+    if (imageFile) {
+      const cloudinaryURL = 'https://api.cloudinary.com/v1_1/dzsgront4/auto/upload';
+      const cloudinaryImage = new FormData();
+      cloudinaryImage.append('file', imageFile);
+      cloudinaryImage.append('upload_preset', 'city_pop_songs');
+      const imageRes = await fetch(cloudinaryURL, { method: 'POST', body: cloudinaryImage })
+      let image = await imageRes.json();
+      image = image.secure_url;
+
+      setEditImageURL(image);
+    }
+    setIsLoading(false);
+
+    await dispatch(updateUser(sessionUser.id, editImageURL, description));
+
+    setShowEdit(false);
   }
 
   return (
@@ -81,7 +99,10 @@ function UserPage() {
         </span>
         <p><strong>Description: </strong>{thisUser?.user.description || 'No Description Available :('}</p>
       </section>
-      {showEdit && (
+      {showEdit && isLoading && (
+        <LoadingDiv />
+      )}
+      {showEdit && !isLoading && (
         <section className='ud-edit-user'>
           <h2>Edit Image & Description</h2>
           <form onSubmit={(e) => handleEditUser(e)}>

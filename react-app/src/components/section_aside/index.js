@@ -72,6 +72,15 @@ function SideBar({ user, follow, rFollows, rSongs }) {
 
   return (
     <aside>
+      <div className='wip-noti'>
+        <h2>
+          Work In Progress
+        </h2>
+        <br></br>
+        <p>This website is being developed, there may be buttons and stylings related to planned features.</p>
+        <br></br>
+        <p>Thanks for your understanding!</p>
+      </div>
       {rSongs && user && (
         <>
           <h2 

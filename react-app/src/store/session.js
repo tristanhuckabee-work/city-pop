@@ -1,10 +1,12 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-const SET_OTHER = "session/SET_OTHER";
+const SET_OTHER = "users/SET_OTHER";
+const EDIT_USER = "users/EDIT_USER";
 
 const setUser = payload => ({ type: SET_USER, payload });
 const removeUser = () => ({ type: REMOVE_USER });
 const setOther = payload => ({ type: SET_OTHER, payload });
+const editUser = payload => ({ type: EDIT_USER, payload });
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -95,6 +97,20 @@ export const getOtherUser = id => async dispatch => {
     dispatch(setOther(data));
   }
 }
+export const updateUser = (id, imageURL, description) => async (dispatch) => {
+  const res = await fetch(`/api/users/${id}/edit`, {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({
+      image_url: imageURL,
+      description
+    })
+  });
+  const data = await res.json();
+
+  if (res.ok) dispatch(editUser(data));
+  return data;
+}
 
 const initialState = { user: null, other: null };
 
@@ -109,6 +125,14 @@ export default function reducer(state = initialState, action) {
         user: state.user,
         other: action.payload
       }
+    case EDIT_USER:
+      const newState = {
+        user: action.payload,
+        other: state.other
+      }
+      newState.other.user = action.payload
+      
+      return newState;
 		default:
 			return state;
 	}

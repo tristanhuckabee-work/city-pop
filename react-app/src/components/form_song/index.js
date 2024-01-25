@@ -21,6 +21,7 @@ function SongForm() {
   const [name, setName] = useState('');
   const [genre, setGenre] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
   }, [audioURL])
@@ -28,6 +29,12 @@ function SongForm() {
   const handlePreview = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    let newErrors = []
+    if (!audioURL.length && !audioFile) newErrors.push('Please upload a music file or provide a link');
+    if (!name.length) newErrors.push('Please provide a title')
+    setErrors(newErrors);
+    if (errors.length) return;
 
     setIsLoading(true);
     if (audioFile) {
@@ -110,6 +117,8 @@ function SongForm() {
         <ul>
           <li className='form-specs'>* Elements are Required</li>
           <li className='form-specs'>If you Provide a URL and a File, we will use the File</li>
+          {errors.length > 0 && (<li>{errors}</li>)}
+          
         </ul>
         <p>Enter a URL or upload a Music File*</p>
         <input

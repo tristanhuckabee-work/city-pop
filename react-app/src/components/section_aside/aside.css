@@ -28,3 +28,9 @@ aside {
   height: 50px;
   width: 50px;
 }
+.wip-noti {
+  background-color: var(--pink-trans);
+  border-radius: 5px;
+  color: white;
+  padding : 10px;
+}
