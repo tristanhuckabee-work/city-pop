@@ -5,6 +5,7 @@ import MiniSongCard from './card_song_mini';
 import UserCard from '../card_user';
 import './aside.css';
 import { get_all_songs } from '../../store/songs';
+import { get_following, get_recommended } from '../../store/follows';
 
 function SideBar({ user, follow, rFollows, rSongs }) {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ function SideBar({ user, follow, rFollows, rSongs }) {
 
   useEffect(() => {
     dispatch(get_all_songs());
+    dispatch(get_recommended());
+    dispatch(get_following());
   }, [dispatch]);
 
   const followingList = () => {
