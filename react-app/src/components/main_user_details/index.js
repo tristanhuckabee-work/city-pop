@@ -16,12 +16,11 @@ function UserPage() {
   const sessionUser = useSelector(state => state.session.user);
   const isFollowed = useSelector(state => state.follows.following[id]);
   const thisUser = useSelector(state => state.session.other);
-  // console.log(isFollowed);
 
   const isCurrentUser = sessionUser?.id == thisUser?.user.id;
   const [editImageURL, setEditImageURL] = useState(thisUser?.user?.image_url);
   const [imageFile, setImageFile] = useState(null);
-  const [description, setDescription] = useState(thisUser?.user?.description || '');
+  const [description, setDescription] = useState(thisUser?.user?.description);
   const [showEdit, setShowEdit] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,6 +61,8 @@ function UserPage() {
     e.preventDefault();
     e.stopPropagation();
 
+    let newImage;
+
     setIsLoading(true);
     if (imageFile) {
       const cloudinaryURL = 'https://api.cloudinary.com/v1_1/dzsgront4/auto/upload';
@@ -73,10 +74,11 @@ function UserPage() {
       image = image.secure_url;
 
       setEditImageURL(image);
+      newImage = image;
     }
     setIsLoading(false);
 
-    await dispatch(updateUser(sessionUser.id, editImageURL, description));
+    await dispatch(updateUser(sessionUser.id, newImage, description));
 
     setShowEdit(false);
   }
