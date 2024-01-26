@@ -57,7 +57,6 @@ export default function reducer(state = initialState, action) {
   
   switch (action.type) {
 		case CREATE:
-      console.log('create payload:', action.payload);
       newState[action.payload.song_id] = action.payload;
 			return newState;
 		case READ:
@@ -66,7 +65,6 @@ export default function reducer(state = initialState, action) {
       });
       return newState;
     case UPDATE:
-      console.log('edit payload:', action.payload);
       newState[action.payload.song_id] = action.payload;
 			return newState;
 		default:
