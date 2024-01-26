@@ -71,9 +71,10 @@ function Main() {
             <h3>In The Future...</h3>
             <hr></hr>
             <p>Playlists : Auto-play Multiple Songs</p>
+            <p>Tags: Search by Tags</p>
             <p>Prioritize songs from followed accounts on user's Feed.</p>
-            <p>Improve recommendation algorithms.</p>
             <br></br>
+            <p>Improve recommendation algorithms.</p>
             <p>Improve Responsiveness</p>
             <p>Audio Visualizer?</p>
           </article>
