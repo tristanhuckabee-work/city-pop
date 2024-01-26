@@ -53,7 +53,7 @@ function Main() {
             <p>Node Runtime Environment</p>
             <br></br>
             <p>Render.com for Deployment</p>
-            <p>Cloudinary API for File Uploads</p>
+            <p>Cloudinary API for Asset Management</p>
             <p>Git for Versioning</p>
           </article>
           <article className='splash-card'>
